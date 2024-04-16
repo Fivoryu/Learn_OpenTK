@@ -4,7 +4,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Learn_OpenTK.Renderer;
+using Hello_OpenTK.Objects;
+using Hello_OpenTK.Renderer;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
@@ -12,321 +13,14 @@ using OpenTK.Mathematics;
 using OpenTK.Windowing.GraphicsLibraryFramework;
 using StbImageSharp;
 
-namespace Learn_OpenTK
+namespace Hello_OpenTK
 {   
     internal class Game : GameWindow
     {
 
-        private readonly float[] vertices =
-        {
-            // Position         Texture coordinates
-             0.5f,  0.5f, 0.0f, 1.0f, 1.0f, // top right
-             0.5f, -0.5f, 0.0f, 1.0f, 0.0f, // bottom right
-            -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, // bottom left
-            -0.5f,  0.5f, 0.0f, 0.0f, 1.0f  // top left
-        };
+        private Mesh mesh;
 
-        private readonly float[] Screen =
-        {
-            -0.5f, -0.5f, -0.125f,  0.0f, 0.0f,
-             0.5f, -0.5f, -0.125f,  1.0f, 0.0f,
-             0.5f,  0.5f, -0.125f,  1.0f, 1.0f,
-             0.5f,  0.5f, -0.125f,  1.0f, 1.0f,
-            -0.5f,  0.5f, -0.125f,  0.0f, 1.0f,
-            -0.5f, -0.5f, -0.125f,  0.0f, 0.0f,
-
-            -0.5f, -0.5f,  0.125f,  0.0f, 0.0f,
-             0.5f, -0.5f,  0.125f,  1.0f, 0.0f,
-             0.5f,  0.5f,  0.125f,  1.0f, 1.0f,
-             0.5f,  0.5f,  0.125f,  1.0f, 1.0f,
-            -0.5f,  0.5f,  0.125f,  0.0f, 1.0f,
-            -0.5f, -0.5f,  0.125f,  0.0f, 0.0f,
-
-            -0.5f,  0.5f,  0.125f,  1.0f, 0.0f,
-            -0.5f,  0.5f, -0.125f,  1.0f, 1.0f,
-            -0.5f, -0.5f, -0.125f,  0.0f, 1.0f,
-            -0.5f, -0.5f, -0.125f,  0.0f, 1.0f,
-            -0.5f, -0.5f,  0.125f,  0.0f, 0.0f,
-            -0.5f,  0.5f,  0.125f,  1.0f, 0.0f,
-
-             0.5f,  0.5f,  0.125f,  1.0f, 0.0f,
-             0.5f,  0.5f, -0.125f,  1.0f, 1.0f,
-             0.5f, -0.5f, -0.125f,  0.0f, 1.0f,
-             0.5f, -0.5f, -0.125f,  0.0f, 1.0f,
-             0.5f, -0.5f,  0.125f,  0.0f, 0.0f,
-             0.5f,  0.5f,  0.125f,  1.0f, 0.0f,
-
-            -0.5f, -0.5f, -0.125f,  0.0f, 1.0f,
-             0.5f, -0.5f, -0.125f,  1.0f, 1.0f,
-             0.5f, -0.5f,  0.125f,  1.0f, 0.0f,
-             0.5f, -0.5f,  0.125f,  1.0f, 0.0f,
-            -0.5f, -0.5f,  0.125f,  0.0f, 0.0f,
-            -0.5f, -0.5f, -0.125f,  0.0f, 1.0f,
-
-            -0.5f,  0.5f, -0.125f,  0.0f, 1.0f,
-             0.5f,  0.5f, -0.125f,  1.0f, 1.0f,
-             0.5f,  0.5f,  0.125f,  1.0f, 0.0f,
-             0.5f,  0.5f,  0.125f,  1.0f, 0.0f,
-            -0.5f,  0.5f,  0.125f,  0.0f, 0.0f,
-            -0.5f,  0.5f, -0.125f,  0.0f, 1.0f
-        };
-
-        private readonly float[] UpEdge =
-        {
-            -0.5f, 0.0f, -0.125f,  0.0f, 0.0f,
-             0.5f, 0.0f, -0.125f,  1.0f, 0.0f,
-             0.5f,  0.0625f, -0.125f,  1.0f, 1.0f,
-             0.5f,  0.0625f, -0.125f,  1.0f, 1.0f,
-            -0.5f,  0.0625f, -0.125f,  0.0f, 1.0f,
-            -0.5f, 0.0f, -0.125f,  0.0f, 0.0f,
-
-            -0.5f, 0.0f,  0.125f,  0.0f, 0.0f,
-             0.5f, 0.0f,  0.125f,  1.0f, 0.0f,
-             0.5f,  0.0625f,  0.125f,  1.0f, 1.0f,
-             0.5f,  0.0625f,  0.125f,  1.0f, 1.0f,
-            -0.5f,  0.0625f,  0.125f,  0.0f, 1.0f,
-            -0.5f, 0.0f,  0.125f,  0.0f, 0.0f,
-
-            -0.5f,  0.0625f,  0.125f,  1.0f, 0.0f,
-            -0.5f,  0.0625f, -0.125f,  1.0f, 1.0f,
-            -0.5f, 0.0f, -0.125f,  0.0f, 1.0f,
-            -0.5f, 0.0f, -0.125f,  0.0f, 1.0f,
-            -0.5f, 0.0f,  0.125f,  0.0f, 0.0f,
-            -0.5f,  0.0625f,  0.125f,  1.0f, 0.0f,
-
-             0.5f,  0.0625f,  0.125f,  1.0f, 0.0f,
-             0.5f,  0.0625f, -0.125f,  1.0f, 1.0f,
-             0.5f, 0.0f, -0.125f,  0.0f, 1.0f,
-             0.5f, 0.0f, -0.125f,  0.0f, 1.0f,
-             0.5f, 0.0f,  0.125f,  0.0f, 0.0f,
-             0.5f,  0.0625f,  0.125f,  1.0f, 0.0f,
-
-            -0.5f, 0.0f, -0.125f,  0.0f, 1.0f,
-             0.5f, 0.0f, -0.125f,  1.0f, 1.0f,
-             0.5f, 0.0f,  0.125f,  1.0f, 0.0f,
-             0.5f, 0.0f,  0.125f,  1.0f, 0.0f,
-            -0.5f, 0.0f,  0.125f,  0.0f, 0.0f,
-            -0.5f, 0.0f, -0.125f,  0.0f, 1.0f,
-
-            -0.5f,  0.0625f, -0.125f,  0.0f, 1.0f,
-             0.5f,  0.0625f, -0.125f,  1.0f, 1.0f,
-             0.5f,  0.0625f,  0.125f,  1.0f, 0.0f,
-             0.5f,  0.0625f,  0.125f,  1.0f, 0.0f,
-            -0.5f,  0.0625f,  0.125f,  0.0f, 0.0f,
-            -0.5f,  0.0625f, -0.125f,  0.0f, 1.0f
-        };
-
-        private readonly float[] LeftEdge =
-        {
-            -0.5625f, 0.0f, -0.125f,  0.0f, 0.0f,
-             0.5625f, 0.0f, -0.125f,  1.0f, 0.0f,
-             0.5625f,  0.0625f, -0.125f,  1.0f, 1.0f,
-             0.5625f,  0.0625f, -0.125f,  1.0f, 1.0f,
-            -0.5625f,  0.0625f, -0.125f,  0.0f, 1.0f,
-            -0.5625f, 0.0f, -0.125f,  0.0f, 0.0f,
-
-            -0.5625f, 0.0f,  0.125f,  0.0f, 0.0f,
-             0.5625f, 0.0f,  0.125f,  1.0f, 0.0f,
-             0.5625f,  0.0625f,  0.125f,  1.0f, 1.0f,
-             0.5625f,  0.0625f,  0.125f,  1.0f, 1.0f,
-            -0.5625f,  0.0625f,  0.125f,  0.0f, 1.0f,
-            -0.5625f, 0.0f,  0.125f,  0.0f, 0.0f,
-
-            -0.5625f,  0.0625f,  0.125f,  1.0f, 0.0f,
-            -0.5625f,  0.0625f, -0.125f,  1.0f, 1.0f,
-            -0.5625f, 0.0f, -0.125f,  0.0f, 1.0f,
-            -0.5625f, 0.0f, -0.125f,  0.0f, 1.0f,
-            -0.5625f, 0.0f,  0.125f,  0.0f, 0.0f,
-            -0.5625f,  0.0625f,  0.125f,  1.0f, 0.0f,
-
-             0.5625f,  0.0625f,  0.125f,  1.0f, 0.0f,
-             0.5625f,  0.0625f, -0.125f,  1.0f, 1.0f,
-             0.5625f, 0.0f, -0.125f,  0.0f, 1.0f,
-             0.5625f, 0.0f, -0.125f,  0.0f, 1.0f,
-             0.5625f, 0.0f,  0.125f,  0.0f, 0.0f,
-             0.5625f,  0.0625f,  0.125f,  1.0f, 0.0f,
-
-            -0.5625f, 0.0f, -0.125f,  0.0f, 1.0f,
-             0.5625f, 0.0f, -0.125f,  1.0f, 1.0f,
-             0.5625f, 0.0f,  0.125f,  1.0f, 0.0f,
-             0.5625f, 0.0f,  0.125f,  1.0f, 0.0f,
-            -0.5625f, 0.0f,  0.125f,  0.0f, 0.0f,
-            -0.5625f, 0.0f, -0.125f,  0.0f, 1.0f,
-
-            -0.5625f,  0.0625f, -0.125f,  0.0f, 1.0f,
-             0.5625f,  0.0625f, -0.125f,  1.0f, 1.0f,
-             0.5625f,  0.0625f,  0.125f,  1.0f, 0.0f,
-             0.5625f,  0.0625f,  0.125f,  1.0f, 0.0f,
-            -0.5625f,  0.0625f,  0.125f,  0.0f, 0.0f,
-            -0.5625f,  0.0625f, -0.125f,  0.0f, 1.0f
-        };
-
-        float[] texCoords =
-        {
-            0.0f, 1.0f,
-            1.0f, 1.0f,
-            1.0f, 0.0f,
-            0.0f, 0.0f,
-
-            0.0f, 1.0f,
-            1.0f, 1.0f,
-            1.0f, 0.0f,
-            0.0f, 0.0f,
-
-            0.0f, 1.0f,
-            1.0f, 1.0f,
-            1.0f, 0.0f,
-            0.0f, 0.0f,
-
-            0.0f, 1.0f,
-            1.0f, 1.0f,
-            1.0f, 0.0f,
-            0.0f, 0.0f,
-
-            0.0f, 1.0f,
-            1.0f, 1.0f,
-            1.0f, 0.0f,
-            0.0f, 0.0f,
-
-            0.0f, 1.0f,
-            1.0f, 1.0f,
-            1.0f, 0.0f,
-            0.0f, 0.0f,
-        };
-
-        private readonly float[] Support =
-        {
-            -2.0f, -0.5f, -0.5f,  0.0f, 0.0f,
-             2.0f, -0.5f, -0.5f,  1.0f, 0.0f,
-             2.0f,  0.5f, -0.5f,  1.0f, 1.0f,
-             2.0f,  0.5f, -0.5f,  1.0f, 1.0f,
-            -2.0f,  0.5f, -0.5f,  0.0f, 1.0f,
-            -2.0f, -0.5f, -0.5f,  0.0f, 0.0f,
-
-            -2.0f, -0.5f,  0.5f,  0.0f, 0.0f,
-             2.0f, -0.5f,  0.5f,  1.0f, 0.0f,
-             2.0f,  0.5f,  0.5f,  1.0f, 1.0f,
-             2.0f,  0.5f,  0.5f,  1.0f, 1.0f,
-            -2.0f,  0.5f,  0.5f,  0.0f, 1.0f,
-            -2.0f, -0.5f,  0.5f,  0.0f, 0.0f,
-
-            -2.0f,  0.5f,  0.5f,  1.0f, 0.0f,
-            -2.0f,  0.5f, -0.5f,  1.0f, 1.0f,
-            -2.0f, -0.5f, -0.5f,  0.0f, 1.0f,
-            -2.0f, -0.5f, -0.5f,  0.0f, 1.0f,
-            -2.0f, -0.5f,  0.5f,  0.0f, 0.0f,
-            -2.0f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-             2.0f,  0.5f,  0.5f,  1.0f, 0.0f,
-             2.0f,  0.5f, -0.5f,  1.0f, 1.0f,
-             2.0f, -0.5f, -0.5f,  0.0f, 1.0f,
-             2.0f, -0.5f, -0.5f,  0.0f, 1.0f,
-             2.0f, -0.5f,  0.5f,  0.0f, 0.0f,
-             2.0f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-            -2.0f, -0.5f, -0.5f,  0.0f, 1.0f,
-             2.0f, -0.5f, -0.5f,  1.0f, 1.0f,
-             2.0f, -0.5f,  0.5f,  1.0f, 0.0f,
-             2.0f, -0.5f,  0.5f,  1.0f, 0.0f,
-            -2.0f, -0.5f,  0.5f,  0.0f, 0.0f,
-            -2.0f, -0.5f, -0.5f,  0.0f, 1.0f,
-
-            -2.0f,  0.5f, -0.5f,  0.0f, 1.0f,
-             2.0f,  0.5f, -0.5f,  1.0f, 1.0f,
-             2.0f,  0.5f,  0.5f,  1.0f, 0.0f,
-             2.0f,  0.5f,  0.5f,  1.0f, 0.0f,
-            -2.0f,  0.5f,  0.5f,  0.0f, 0.0f,
-            -2.0f,  0.5f, -0.5f,  0.0f, 1.0f
-        };
-
-        private readonly float[] Support2 =
-        {
-            -2.5f, -0.125f, -1.0f,  0.0f, 0.0f,
-             2.5f, -0.125f, -1.0f,  1.0f, 0.0f,
-             2.5f,  0.125f, -1.0f,  1.0f, 1.0f,
-             2.5f,  0.125f, -1.0f,  1.0f, 1.0f,
-            -2.5f,  0.125f, -1.0f,  0.0f, 1.0f,
-            -2.5f, -0.125f, -1.0f,  0.0f, 0.0f,
-
-            -2.5f, -0.125f,  1.0f,  0.0f, 0.0f,
-             2.5f, -0.125f,  1.0f,  1.0f, 0.0f,
-             2.5f,  0.125f,  1.0f,  1.0f, 1.0f,
-             2.5f,  0.125f,  1.0f,  1.0f, 1.0f,
-            -2.5f,  0.125f,  1.0f,  0.0f, 1.0f,
-            -2.5f, -0.125f,  1.0f,  0.0f, 0.0f,
-
-            -2.5f,  0.125f,  1.0f,  1.0f, 0.0f,
-            -2.5f,  0.125f, -1.0f,  1.0f, 1.0f,
-            -2.5f, -0.125f, -1.0f,  0.0f, 1.0f,
-            -2.5f, -0.125f, -1.0f,  0.0f, 1.0f,
-            -2.5f, -0.125f,  1.0f,  0.0f, 0.0f,
-            -2.5f,  0.125f,  1.0f,  1.0f, 0.0f,
-
-             2.5f,  0.125f,  1.0f,  1.0f, 0.0f,
-             2.5f,  0.125f, -1.0f,  1.0f, 1.0f,
-             2.5f, -0.125f, -1.0f,  0.0f, 1.0f,
-             2.5f, -0.125f, -1.0f,  0.0f, 1.0f,
-             2.5f, -0.125f,  1.0f,  0.0f, 0.0f,
-             2.5f,  0.125f,  1.0f,  1.0f, 0.0f,
-
-            -2.5f, -0.125f, -1.0f,  0.0f, 1.0f,
-             2.5f, -0.125f, -1.0f,  1.0f, 1.0f,
-             2.5f, -0.125f,  1.0f,  1.0f, 0.0f,
-             2.5f, -0.125f,  1.0f,  1.0f, 0.0f,
-            -2.5f, -0.125f,  1.0f,  0.0f, 0.0f,
-            -2.5f, -0.125f, -1.0f,  0.0f, 1.0f,
-
-            -2.5f,  0.125f, -1.0f,  0.0f, 1.0f,
-             2.5f,  0.125f, -1.0f,  1.0f, 1.0f,
-             2.5f,  0.125f,  1.0f,  1.0f, 0.0f,
-             2.5f,  0.125f,  1.0f,  1.0f, 0.0f,
-            -2.5f,  0.125f,  1.0f,  0.0f, 0.0f,
-            -2.5f,  0.125f, -1.0f,  0.0f, 1.0f
-        };
-
-        uint[] indices2 =
-        {
-            0, 1, 2,
-            2, 3, 0,
-
-            4, 5, 6,
-            6, 7, 4,
-
-            8, 9, 10,
-            10, 11, 8,
-
-            12, 13, 14,
-            14, 15, 12,
-
-            16, 17, 18,
-            18, 19, 16,
-
-            20, 21, 22,
-            22, 23, 20
-        };
-
-        uint[] indices = { // Note that we start from 0!        
-            0, 1, 3,    // First triangle 
-            1, 2, 3     // Second triangle
-        };
-
-        private int vao;
-        private int rvao;
-        private int uevao, levao, devao, revao;
-        private int suvao, su2vao;
-
-        private Shader shader;
-        private Shader shaderScreen;
-        private Shader UpShader;
-        private Shader LeftShader;
-        private Shader DownShader;
-        private Shader RightShader;
-        private Shader SupportShader;
-        private Shader Support2Shader;
-
-        private Textures texture;
-        private Textures texture2;
-        private Textures WhiteTexture;
+        private Scene scene1 = new Scene();
 
         private double time = 0;
 
@@ -419,83 +113,60 @@ namespace Learn_OpenTK
             camera.Fov -= e.OffsetY;
         }
 
-        private void GenVertex(ref int VAO, ref Shader shader, float[] vertices, uint[] indices, string vertFilePath, string fragFilePath)
-        {
-            int vbo = GL.GenBuffer();
-            GL.BindBuffer(BufferTarget.ArrayBuffer, vbo);
-            GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.StaticDraw);
-
-            VAO = GL.GenVertexArray();
-            GL.BindVertexArray(VAO);
-
-            shader = new Shader(vertFilePath, fragFilePath);
-
-            var vertexLocation = shader.GetAttribLocation("aPosition");
-            GL.EnableVertexAttribArray(vertexLocation);
-            GL.VertexAttribPointer(vertexLocation, 3, VertexAttribPointerType.Float, false, 5 * sizeof(float), 0);
-
-            var texCoordLocation = shader.GetAttribLocation("aTexCoord");
-            GL.EnableVertexAttribArray(texCoordLocation);
-            GL.VertexAttribPointer(texCoordLocation, 2, VertexAttribPointerType.Float, false, 5 * sizeof(float), 3 * sizeof(float));
-
-            int ebo = GL.GenBuffer();
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, ebo);
-            GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(uint), indices, BufferUsageHint.StaticDraw);
-        }
-
-        private void GenVertex2(ref int VAO, ref Shader shader, float[] vertices, uint[] indices, string vertFilePath, string fragFilePath)
-        {
-            int vbo = GL.GenBuffer();
-            GL.BindBuffer(BufferTarget.ArrayBuffer, vbo);
-            GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.StaticDraw);
-
-            VAO = GL.GenVertexArray();
-            GL.BindVertexArray(VAO);
-
-            shader = new Shader(vertFilePath, fragFilePath);
-
-            var vertexLocation = shader.GetAttribLocation("aPosition");
-            GL.EnableVertexAttribArray(vertexLocation);
-            GL.VertexAttribPointer(vertexLocation, 3, VertexAttribPointerType.Float, false, 5 * sizeof(float), 0);
-
-            int ebo = GL.GenBuffer();
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, ebo);
-            GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(uint), indices, BufferUsageHint.StaticDraw);
-        }
-
         protected override void OnLoad()
         {
             base.OnLoad();
+            mesh = new Mesh(Vertices2.TV, Vertices2.TVIndices);
 
-            GL.ClearColor(0.8f, 0.8f, 0.8f, 1.0f);
+            List<Vertex2> aux = new List<Vertex2>(Vertices2.TV);
 
-            GenVertex2(ref rvao, ref shaderScreen, Screen, indices, "../../../shader.vert", "../../../shader.frag");
+            aux = Operador.Translation(aux, 4.0f, 0.0f);
 
-            GenVertex2(ref uevao, ref UpShader, UpEdge, indices, "../../../shader.vert", "../../../shader.frag");
+            scene1.Objetos["Television1"] = new Mesh(aux, Vertices2.TVIndices);
 
-            GenVertex2(ref devao, ref DownShader, UpEdge, indices, "../../../shader.vert", "../../../shader.frag");
+            aux = new List<Vertex2>(Vertices2.Florero);
 
-            GenVertex2(ref levao, ref LeftShader, LeftEdge, indices, "../../../shader.vert", "../../../shader.frag");
+            aux = Operador.Translation(aux, 4.0f, 0.0f);
 
-            GenVertex2(ref revao, ref RightShader, LeftEdge, indices, "../../../shader.vert", "../../../shader.frag");
+            scene1.Objetos["Florero1"] = new Mesh(aux, Vertices2.FloreroIndices);
 
-            GenVertex2(ref suvao, ref SupportShader, Support, indices, "../../../shader.vert", "../../../shader.frag");
+            aux = new List<Vertex2>(Vertices2.Altavoz);
 
-            GenVertex2(ref su2vao, ref Support2Shader, Support2, indices, "../../../shader.vert", "../../../shader.frag");
+            aux = Operador.Translation(aux, 4.0f, 0.0f);
 
-            // -----    Texture     ----- //
+            scene1.Objetos["Altavoz1"] = new Mesh(aux, Vertices2.AltavozIndices);
 
-            shaderScreen.SetVector4("u_Color", new Vector4(0.5f, 0.5f, 0.5f, 1.0f));
-            UpShader.SetVector4("u_Color", new Vector4(0.2f, 0.2f, 0.2f, 1.0f));
-            DownShader.SetVector4("u_Color", new Vector4(0.2f, 0.2f, 0.2f, 1.0f));
-            LeftShader.SetVector4("u_Color", new Vector4(0.2f, 0.2f, 0.2f, 1.0f));
-            RightShader.SetVector4("u_Color", new Vector4(0.2f, 0.2f, 0.2f, 1.0f));
-            SupportShader.SetVector4("u_Color", new Vector4(0.2f, 0.2f, 0.2f, 1.0f));
-            Support2Shader.SetVector4("u_Color", new Vector4(0.2f, 0.2f, 0.2f, 1.0f));
+            aux = new List<Vertex2>(Vertices2.TV);
 
-            camera = new Camera(Vector3.UnitX *3, Size.X / (float)Size.Y);
+            aux = Operador.Translation(aux, -2.0f, 0.0f);
+
+            scene1.Objetos["Television2"] = new Mesh(aux, Vertices2.TVIndices);
+
+            aux = new List<Vertex2>(Vertices2.Florero);
+
+            aux = Operador.Translation(aux, -2.0f, 0.0f);
+
+            scene1.Objetos["Florero2"] = new Mesh(aux, Vertices2.FloreroIndices);
+
+            aux = new List<Vertex2>(Vertices2.Altavoz);
+
+            aux = Operador.Translation(aux, -2.0f, 0.0f);
+
+            scene1.Objetos["Altavoz2"] = new Mesh(aux, Vertices2.AltavozIndices);
+
+            camera = new Camera(new Vector3(0.0f, 0.0f, -2.0f), Size.X / (float)Size.Y);
+
 
             CursorState = CursorState.Grabbed;
+
+            // Tres clases, un televisor, un florero arriba del televisor, equipo de sonido
+            // Instancias que contenga una clase generica
+            // Lista de objetos, lista de caras, lista de puntos
+            // Escenario lista de objetos, objeto lista de caras, caras lista de puntos
+            // Lista hash, Dictionary
+            // Centro de masa en la clase
+            // Crear una interfaz
+            // Instruccion OpenGL, nop
 
             GL.Enable(EnableCap.DepthTest);
         }
@@ -505,93 +176,21 @@ namespace Learn_OpenTK
         protected override void OnRenderFrame(FrameEventArgs e)
         {
             base.OnRenderFrame(e);
+            var viewprojectionMatrix = camera.GetViewMatrix() * camera.GetProjectionMatrix();
 
-            time += 15.0f * e.Time;
+            // time += 15.0f * e.Time;
+            zRot += 0.0005f;  
 
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-            GL.BindVertexArray(rvao);
-            shaderScreen.Use();
-            var model2 = Matrix4.Identity;
-            model2 *= Matrix4.CreateScale(2.0f) * Matrix4.CreateTranslation(2.0f, 2.0f, 0.0f);
+            GL.ClearColor(0.9f, 0.9f, 0.9f, 1.0f);
 
-            shaderScreen.SetMatrix4("model", model2);
-            shaderScreen.SetMatrix4("view", camera.GetViewMatrix());
-            shaderScreen.SetMatrix4("projection", camera.GetProjectionMatrix());
+            var Model = Matrix4.CreateRotationY((float)0) * Matrix4.CreateScale(2.0f) * viewprojectionMatrix;
 
-            GL.DrawArrays(PrimitiveType.Triangles, 0, 36);
-            
-            GL.BindVertexArray(uevao);
-            
-            UpShader.Use();
-            var model3 = Matrix4.Identity *  
-                Matrix4.CreateScale(2.0f) * Matrix4.CreateTranslation(2.0f, 3.0f, 0.0f);
+            scene1.Render(Model);
 
-            UpShader.SetMatrix4("model", model3);
-            UpShader.SetMatrix4("view", camera.GetViewMatrix());
-            UpShader.SetMatrix4("projection", camera.GetProjectionMatrix());
-
-            GL.DrawArrays(PrimitiveType.Triangles, 0, 36);
-
-            GL.BindVertexArray(devao);
-
-            DownShader.Use();
-            var model4 = Matrix4.Identity *  
-                Matrix4.CreateScale(2.0f) * Matrix4.CreateTranslation(2.0f, 0.875f, 0.0f);
-
-            DownShader.SetMatrix4("model", model4);
-            DownShader.SetMatrix4("view", camera.GetViewMatrix());
-            DownShader.SetMatrix4("projection", camera.GetProjectionMatrix());
-
-            GL.DrawArrays(PrimitiveType.Triangles, 0, 36);
-
-            GL.BindVertexArray(levao);
-
-            LeftShader.Use();
-            var model5 = Matrix4.Identity 
-                * Matrix4.CreateScale(2.0f) * Matrix4.CreateTranslation(2.0f, -1.0f, 0.0f);
-            zRot += 0.5f;
-            model5 *= Matrix4.CreateRotationZ((float)MathHelper.DegreesToRadians(90.0f));
-
-            LeftShader.SetMatrix4("model", model5);
-            LeftShader.SetMatrix4("view", camera.GetViewMatrix());
-            LeftShader.SetMatrix4("projection", camera.GetProjectionMatrix());
-
-            GL.DrawArrays(PrimitiveType.Triangles, 0, 36);
-
-            GL.BindVertexArray(revao);
-
-            RightShader.Use();
-            var model6 = Matrix4.Identity * Matrix4.CreateScale(2.0f) * Matrix4.CreateTranslation(2.0f, -3.125f, 0.0f);
-            model6 *= Matrix4.CreateRotationZ((float)MathHelper.DegreesToRadians(90.0f));
-
-            RightShader.SetMatrix4("model", model6);
-            RightShader.SetMatrix4("view", camera.GetViewMatrix());
-            RightShader.SetMatrix4("projection", camera.GetProjectionMatrix());
-
-            GL.DrawArrays(PrimitiveType.Triangles, 0, 36);
-
-            GL.BindVertexArray(suvao);
-
-            SupportShader.Use();
-            var model7 = Matrix4.Identity * Matrix4.CreateScale(0.25f) * Matrix4.CreateTranslation(2.0f, 0.75f, 0.0f);
-
-            SupportShader.SetMatrix4("model", model7);
-            SupportShader.SetMatrix4("view", camera.GetViewMatrix());
-            SupportShader.SetMatrix4("projection", camera.GetProjectionMatrix());
-
-            GL.DrawArrays(PrimitiveType.Triangles, 0, 36);
-
-            GL.BindVertexArray(su2vao);
-
-            Support2Shader.Use();
-            model7 = Matrix4.Identity * Matrix4.CreateScale(0.375f) * Matrix4.CreateTranslation(2.0f, 0.625f, 0.0f);
-
-            Support2Shader.SetMatrix4("model", model7);
-            Support2Shader.SetMatrix4("view", camera.GetViewMatrix());
-            Support2Shader.SetMatrix4("projection", camera.GetProjectionMatrix());
-
-            GL.DrawArrays(PrimitiveType.Triangles, 0, 36);
+            Matrix4 model2 = Matrix4.CreateTranslation(2.0f, 0.0f, 0.0f) * Matrix4.CreateRotationY((float)0) * Matrix4.CreateScale(2.0f) * viewprojectionMatrix;
+            mesh.Draw(model2);
 
             SwapBuffers();
         }
@@ -599,21 +198,13 @@ namespace Learn_OpenTK
         protected override void OnResize(ResizeEventArgs e)
         {
             base.OnResize(e);
+            
 
-            GL.Viewport(0, 0, Size.X, Size.Y);
             camera.AspectRatio = Size.X / (float)Size.Y;
         }
 
         protected override void OnUnload()
         {
-            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
-            GL.BindVertexArray(0);
-            GL.UseProgram(0);
-
-            GL.DeleteVertexArray(vao);
-
-           // GL.DeleteProgram(shader.Handle);
-
             base.OnUnload();
         }
     }

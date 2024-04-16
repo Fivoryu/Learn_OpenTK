@@ -1,3 +1,9 @@
+C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\obj\Debug\net8.0\Hello_OpenTK.csproj.AssemblyReference.cache
+C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\obj\Debug\net8.0\Hello_OpenTK.GeneratedMSBuildEditorConfig.editorconfig
+C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\obj\Debug\net8.0\Hello_OpenTK.AssemblyInfoInputs.cache
+C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\obj\Debug\net8.0\Hello_OpenTK.AssemblyInfo.cs
+C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\obj\Debug\net8.0\Hello_OpenTK.csproj.CoreCompileInputs.cache
+C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\obj\Debug\net8.0\Hello_OpenTK.sourcelink.json
 C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\bin\Debug\net8.0\Hello_OpenTK.exe
 C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\bin\Debug\net8.0\Hello_OpenTK.deps.json
 C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\bin\Debug\net8.0\Hello_OpenTK.runtimeconfig.json
@@ -19,11 +25,6 @@ C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\bin\Debug\net8.0\runtimes\osx-
 C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\bin\Debug\net8.0\runtimes\osx-x64\native\libglfw.3.dylib
 C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\bin\Debug\net8.0\runtimes\win-x64\native\glfw3.dll
 C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\bin\Debug\net8.0\runtimes\win-x86\native\glfw3.dll
-C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\obj\Debug\net8.0\Hello_OpenTK.csproj.AssemblyReference.cache
-C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\obj\Debug\net8.0\Hello_OpenTK.GeneratedMSBuildEditorConfig.editorconfig
-C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\obj\Debug\net8.0\Hello_OpenTK.AssemblyInfoInputs.cache
-C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\obj\Debug\net8.0\Hello_OpenTK.AssemblyInfo.cs
-C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\obj\Debug\net8.0\Hello_OpenTK.csproj.CoreCompileInputs.cache
 C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\obj\Debug\net8.0\Hello_Op.B758152D.Up2Date
 C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\obj\Debug\net8.0\Hello_OpenTK.dll
 C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\obj\Debug\net8.0\refint\Hello_OpenTK.dll

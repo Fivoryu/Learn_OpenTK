@@ -1,16 +1,16 @@
 ﻿using System;
 using OpenTK.Mathematics;
 
-namespace Learn_OpenTK.Renderer
+namespace Hello_OpenTK.Renderer
 {
     public class Camera
     {
         private Vector3 front = -Vector3.UnitZ;
-        private Vector3 up = Vector3.UnitY;
+        private Vector3 up = -Vector3.UnitY;
         private Vector3 right = Vector3.UnitX;
 
         private float pitch;
-        private float yaw = -MathHelper.PiOver2;
+        private float yaw = MathHelper.PiOver2;
         private float fov = MathHelper.PiOver2;
 
         public Camera(Vector3 position, float aspectRatio)

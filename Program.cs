@@ -3,7 +3,7 @@ using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.GraphicsLibraryFramework;
 
-namespace Learn_OpenTK
+namespace Hello_OpenTK
 {
     public static class Program
     {
@@ -12,7 +12,7 @@ namespace Learn_OpenTK
             var nativeWindowSettings = new NativeWindowSettings()
             {
                 ClientSize = new Vector2i(800, 600),
-                Title = "LearnOpenTK - Element Buffer Objects",
+                Title = "Hello OpenTK",
             };
 
             using (var window = new Game(GameWindowSettings.Default, nativeWindowSettings))

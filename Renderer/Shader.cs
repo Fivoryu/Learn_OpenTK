@@ -7,9 +7,9 @@ using OpenTK.Audio.OpenAL;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 
-namespace Learn_OpenTK.Renderer
+namespace Hello_OpenTK.Renderer
 {
-    internal class Shader
+    public class Shader
     {
         public int Handle;
 

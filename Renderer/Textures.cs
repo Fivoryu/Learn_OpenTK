@@ -8,7 +8,7 @@ using OpenTK.Graphics.OpenGL4;
 using System.Dynamic;
 using System.Runtime.CompilerServices;
 
-namespace Learn_OpenTK.Renderer
+namespace Hello_OpenTK.Renderer
 {
     internal class Textures
     {
