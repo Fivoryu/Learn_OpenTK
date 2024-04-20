@@ -22,3 +22,14 @@ namespace Hello_OpenTK
         }
     }
 }
+
+
+
+// Tres clases, un televisor, un florero arriba del televisor, equipo de sonido
+// Instancias que contenga una clase generica
+// Lista de objetos, lista de partes, lista de caras, lista de puntos
+// Escenario lista de objetos, objeto lista de caras, caras lista de puntos
+// Lista hash, Dictionary
+// Centro de masa en la clase
+// Crear una interfaz
+// Instruccion OpenGL, nop

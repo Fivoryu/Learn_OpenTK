@@ -31,3 +31,4 @@ C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\obj\Debug\net8.0\refint\Hello_
 C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\obj\Debug\net8.0\Hello_OpenTK.pdb
 C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\obj\Debug\net8.0\Hello_OpenTK.genruntimeconfig.cache
 C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\obj\Debug\net8.0\ref\Hello_OpenTK.dll
+C:\Programacion_grafica\Learn_OpenTK\Learn_OpenTK\bin\Debug\net8.0\Newtonsoft.Json.dll

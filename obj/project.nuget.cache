@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Gbj7shw6pfJvn1mjiARkTwQzitgyNcLs7NtEpnt9GT52P5ZPsLjy7dqM3+DQNmSc1lB3nxuuBUXGn3jmZeI43Q==",
+  "dgSpecHash": "IoH/wIDVIzlILuiKaFfUDHIq0cdNNHsxn/VXcWY4lYJS3iAniyMrlIeDO6P3IocTqt+HoKR2lhualG8QCTp5ng==",
   "success": true,
   "projectFilePath": "C:\\Programacion_grafica\\Learn_OpenTK\\Learn_OpenTK\\Hello_OpenTK.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Usuario\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\opentk\\4.8.2\\opentk.4.8.2.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\opentk.audio.openal\\4.8.2\\opentk.audio.openal.4.8.2.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\opentk.compute\\4.8.2\\opentk.compute.4.8.2.nupkg.sha512",

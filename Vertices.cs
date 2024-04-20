@@ -189,10 +189,10 @@ namespace Hello_OpenTK
             19, 16, 20,
             19, 23, 20,
             // EdgeLeft
-            24, 25, 26,
+            24, 25, 26,     // Back
             24, 27, 26,
 
-            31, 30, 29,
+            31, 30, 29,     
             31, 28, 29,
 
             28, 29, 25, 
@@ -263,21 +263,21 @@ namespace Hello_OpenTK
             new Vertex2(new Vector3( 0.325f,  1.2625f,  0.225f), new Vector3(0.2f, 0.7f, 0.85f)),  // 6
             new Vertex2(new Vector3( 0.125f,  0.5625f,  0.125f), new Vector3(0.2f, 0.7f, 0.85f)),  // 7
             ////////////////////////////////////////////////////////////////////////////////////
-            new Vertex2(new Vector3(-0.125f - 0.0150f,  0.5625f + 0.4f, -0.125f + 0.0450f), new Vector3(0.2f, 0.7f, 0.85f)),  // 8
-            new Vertex2(new Vector3(-0.325f + 0.0450f,  1.2625f       , -0.225f + 0.0450f), new Vector3(0.2f, 0.7f, 0.85f)),  // 9
-            new Vertex2(new Vector3( 0.325f - 0.0450f,  1.2625f       , -0.225f + 0.0450f), new Vector3(0.2f, 0.7f, 0.85f)),  // 10
-            new Vertex2(new Vector3( 0.125f + 0.0150f,  0.5625f + 0.4f, -0.125f + 0.0450f), new Vector3(0.2f, 0.7f, 0.85f)),  // 11
+            new Vertex2(new Vector3(-0.125f - 0.0150f,  0.9625f, -0.125f + 0.0450f), new Vector3(0.2f, 0.7f, 0.85f)),  // 8
+            new Vertex2(new Vector3(-0.325f + 0.0450f,  1.2625f, -0.225f + 0.0450f), new Vector3(0.2f, 0.7f, 0.85f)),  // 9
+            new Vertex2(new Vector3( 0.325f - 0.0450f,  1.2625f, -0.225f + 0.0450f), new Vector3(0.2f, 0.7f, 0.85f)),  // 10
+            new Vertex2(new Vector3( 0.125f + 0.0150f,  0.9625f, -0.125f + 0.0450f), new Vector3(0.2f, 0.7f, 0.85f)),  // 11
             ///////////////////////////////////////////////////////////////////////////////////
-            new Vertex2(new Vector3(-0.125f - 0.0150f,  0.5625f + 0.4f,  0.125f - 0.0450f), new Vector3(0.2f, 0.7f, 0.85f)),  // 12
-            new Vertex2(new Vector3(-0.325f + 0.0450f,  1.2625f       ,  0.225f - 0.0450f), new Vector3(0.2f, 0.7f, 0.85f)),  // 13
+            new Vertex2(new Vector3(-0.125f - 0.0150f,  0.9625f,  0.125f - 0.0450f), new Vector3(0.2f, 0.7f, 0.85f)),  // 12
+            new Vertex2(new Vector3(-0.325f + 0.0450f,  1.2625f,  0.225f - 0.0450f), new Vector3(0.2f, 0.7f, 0.85f)),  // 13
 
-            new Vertex2(new Vector3( 0.325f - 0.0450f,  1.2625f       ,  0.225f - 0.0450f), new Vector3(0.2f, 0.7f, 0.85f)),  // 14
-            new Vertex2(new Vector3( 0.125f + 0.0150f,  0.5625f + 0.4f,  0.125f - 0.0450f), new Vector3(0.2f, 0.7f, 0.85f)),  // 15
+            new Vertex2(new Vector3( 0.325f - 0.0450f,  1.2625f,  0.225f - 0.0450f), new Vector3(0.2f, 0.7f, 0.85f)),  // 14
+            new Vertex2(new Vector3( 0.125f + 0.0150f,  0.9625f,  0.125f - 0.0450f), new Vector3(0.2f, 0.7f, 0.85f)),  // 15
             ///////////////////////////////////////////////////////////////////////////////////
-            new Vertex2(new Vector3(-0.125f - 0.0150f,  0.5625f + 0.4f, -0.125f + 0.0450f), new Vector3(0.4f, 0.2f ,0.2f)),  // 16
-            new Vertex2(new Vector3(-0.125f - 0.0150f,  0.5625f + 0.4f,  0.125f - 0.0450f), new Vector3(0.4f, 0.2f ,0.2f)),  // 17
-            new Vertex2(new Vector3( 0.125f + 0.0150f,  0.5625f + 0.4f,  0.125f - 0.0450f), new Vector3(0.4f, 0.2f ,0.2f)),  // 18
-            new Vertex2(new Vector3( 0.125f + 0.0150f,  0.5625f + 0.4f, -0.125f + 0.0450f), new Vector3(0.4f, 0.2f ,0.2f)),  // 19
+            new Vertex2(new Vector3(-0.125f - 0.0150f,  0.9625f, -0.125f + 0.0450f), new Vector3(0.4f, 0.2f ,0.2f)),  // 16
+            new Vertex2(new Vector3(-0.125f - 0.0150f,  0.9625f,  0.125f - 0.0450f), new Vector3(0.4f, 0.2f ,0.2f)),  // 17
+            new Vertex2(new Vector3( 0.125f + 0.0150f,  0.9625f,  0.125f - 0.0450f), new Vector3(0.4f, 0.2f ,0.2f)),  // 18
+            new Vertex2(new Vector3( 0.125f + 0.0150f,  0.9625f, -0.125f + 0.0450f), new Vector3(0.4f, 0.2f ,0.2f)),  // 19
         };
 
         public static List<uint> FloreroIndices = new List<uint>

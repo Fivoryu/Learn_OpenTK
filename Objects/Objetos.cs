@@ -106,7 +106,7 @@ namespace Hello_OpenTK.Objects
         }
     }
 
-    public class Mesh
+    public class Objetos
     {
         private List<Vertex2> vertices;
         private List<uint> indices;
@@ -136,7 +136,7 @@ namespace Hello_OpenTK.Objects
             GL.BindVertexArray(0);
         }
 
-        public Mesh(List<Vertex2> vertices, List<uint> indices)
+        public Objetos(List<Vertex2> vertices, List<uint> indices)
         {
             this.vertices = vertices;
             this.indices = indices;
@@ -154,20 +154,23 @@ namespace Hello_OpenTK.Objects
         }
     }
 
-    public class Scene
+    public class Scena
     {
-        public Dictionary<string, Mesh> Objetos;
+        public Dictionary<string, Objetos> Objetos;
 
-        public Scene()
+        private Vector3 Punto;
+
+        public Scena(Vector3 punto)
         {
-            Objetos = new Dictionary<string, Mesh>();
+            Objetos = new Dictionary<string, Objetos>();
+            Punto = punto;
         }
 
         public void Render(Matrix4 viewprojection)
         {
-            foreach(KeyValuePair<string, Mesh> kvp in Objetos)
+            foreach(KeyValuePair<string, Objetos> kvp in Objetos)
             {
-                Objetos[kvp.Key].Draw(viewprojection);
+                Objetos[kvp.Key].Draw(Matrix4.CreateTranslation(Punto) * viewprojection);
             }
         }
     }
