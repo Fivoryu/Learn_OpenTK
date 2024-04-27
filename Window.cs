@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using Hello_OpenTK.Objects;
+using System.IO;
+
 using Hello_OpenTK.Renderer;
 using Hello_OpenTK.Componentes;
 using OpenTK.Graphics.OpenGL4;
@@ -16,20 +12,16 @@ using StbImageSharp;
 
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Newtonsoft.Json;
-using System.IO;
+using System.Data;
 
 namespace Hello_OpenTK
 {   
     internal class Game : GameWindow
     {
-
-        private Objetos mesh;
-
-        private Scena scene1 = new Scena(new Vector3(2.0f, 1.0f, 0.0f));
-        private Scena scene2 = new Scena(new Vector3(-2.0f, 1.0f, 0.0f));
         private Scene scene3 = new Scene();
-        private Scene scene4 = new Scene(new Vector3(1.0f));
+        private Scene scene4 = new Scene(new Vector(1.0f));
+
+        private const string file = "../../../assets/";
 
         private double time = 0;
 
@@ -113,6 +105,78 @@ namespace Hello_OpenTK
                 camera.Pitch -= deltaY * sensitivity;
             }
 
+            if (input.IsKeyDown(Keys.LeftControl) && input.IsKeyDown(Keys.G) && input.IsKeyDown(Keys.T))
+            {
+                float x, y, z;
+
+                Console.WriteLine("X: ");
+                float.TryParse(Console.ReadLine(), out x);
+                Console.WriteLine("Y: ");
+                float.TryParse(Console.ReadLine(), out y);
+                Console.WriteLine("Z: ");
+                float.TryParse(Console.ReadLine(), out z);
+
+                Vector vector = new Vector(x, y, z);
+                Objeto objeto = Carga.CargarTV(vector);
+
+                Console.WriteLine("Ingrese el nombre del archivo:");
+                string fileName = file + Console.ReadLine() + ".json";
+
+                ObjectSerializer.Serialize<Objeto>(objeto, fileName);
+            }
+
+            if (input.IsKeyDown(Keys.LeftControl) && input.IsKeyDown(Keys.G) && input.IsKeyDown(Keys.F))
+            {
+                float x, y, z;
+
+                Console.WriteLine("X: ");
+                float.TryParse(Console.ReadLine(), out x);
+                Console.WriteLine("Y: ");
+                float.TryParse(Console.ReadLine(), out y);
+                Console.WriteLine("Z: ");
+                float.TryParse(Console.ReadLine(), out z);
+
+                Vector vector = new Vector(x, y, z);
+                Objeto objeto = Carga.CargarFlorero(vector);
+
+                Console.WriteLine("Ingrese el nombre del archivo:");
+                string fileName = file + Console.ReadLine() + ".json";
+
+                ObjectSerializer.Serialize<Objeto>(objeto, fileName);
+            }
+
+            if (input.IsKeyDown(Keys.LeftControl) && input.IsKeyDown(Keys.G) && input.IsKeyDown(Keys.P))
+            {
+                float x, y, z;
+
+                Console.WriteLine("X: ");
+                float.TryParse(Console.ReadLine(), out x);
+                Console.WriteLine("Y: ");
+                float.TryParse(Console.ReadLine(), out y);
+                Console.WriteLine("Z: ");
+                float.TryParse(Console.ReadLine(), out z);
+
+                Vector vector = new Vector(x, y, z);
+                Objeto objeto = Carga.CargarParlante(vector);
+
+                Console.WriteLine("Ingrese el nombre del archivo:");
+                string fileName = file + Console.ReadLine() + ".json";
+
+                ObjectSerializer.Serialize<Objeto>(objeto, fileName);
+            }
+
+            if (input.IsKeyDown(Keys.LeftControl) && input.IsKeyDown(Keys.O))
+            {
+
+                Console.WriteLine("Ingrese el nombre del archivo:");
+                string fileName = file + Console.ReadLine() + ".json";
+                Console.WriteLine("Ingrese el nombre del objeto:");
+                string name = Console.ReadLine();
+
+                scene3.m_Objeto[name] = ObjectSerializer.Deserialize<Objeto>(fileName);
+
+            }
+
         }
 
         protected override void OnMouseWheel(MouseWheelEventArgs e)
@@ -122,50 +186,21 @@ namespace Hello_OpenTK
             camera.Fov -= e.OffsetY;
         }
 
-        Objeto eas;
-        Objeto refa;
-
         protected override void OnLoad()
         {
             base.OnLoad();
 
-            // scene1.Objetos["Television1"] = new Objetos(Vertices2.TV, Vertices2.TVIndices);
-            // 
-            // scene1.Objetos["Florero1"] = new Objetos(Vertices2.Florero, Vertices2.FloreroIndices);
-            // 
-            // scene1.Objetos["Altavoz1"] = new Objetos(Vertices2.Altavoz, Vertices2.AltavozIndices);
-            // 
-            // scene2.Objetos["Television2"] = new Objetos(Vertices2.TV, Vertices2.TVIndices);
-            // 
-            // scene2.Objetos["Florero2"] = new Objetos(Vertices2.Florero, Vertices2.FloreroIndices);
-            // 
-            // scene2.Objetos["Altavoz2"] = new Objetos(Vertices2.Altavoz, Vertices2.AltavozIndices);
+            scene3.m_Objeto["TV"] = ObjectSerializer.Deserialize<Objeto>(file + "TV.json");
+            scene3.m_Objeto["Florero"] = ObjectSerializer.Deserialize<Objeto>(file + "Florero.json");
+            scene3.m_Objeto["Altavoz"] = ObjectSerializer.Deserialize<Objeto>(file + "Parlante.json");
 
-            eas = Carga.CargarTV(new Vector3(0.0f, -1.0f, 0.0f));
+            scene3.m_Objeto["TV2"] = ObjectSerializer.Deserialize<Objeto>(file + "TV2.json");
+            scene3.m_Objeto["Florero2"] = ObjectSerializer.Deserialize<Objeto>(file + "Florero2.json");
+            scene3.m_Objeto["Altavoz2"] = ObjectSerializer.Deserialize<Objeto>(file + "Parlante2.json");
 
-            var options = new JsonSerializerOptions
-            {
-                WriteIndented = true,
-                IncludeFields = true,
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-                ReferenceHandler = ReferenceHandler.Preserve
-            };
-
-            string jsonString = System.Text.Json.JsonSerializer.Serialize(eas, options);
-
-
-            scene3.m_Objeto["TV"] = Carga.CargarTV(scene3.m_Position);
-            scene3.m_Objeto["Florero"] = Carga.CargarFlorero(scene3.m_Position);
-            scene3.m_Objeto["Altavoz"] = Carga.CargarParlante(scene3.m_Position);
-            //scene3.m_Objeto["TV2"] = refa;
-
-            scene4.m_Objeto["TV"] = Carga.CargarTV(scene4.m_Position + new Vector3(1.0f));
-            scene4.m_Objeto["Florero"] = Carga.CargarFlorero(scene4.m_Position + new Vector3(1.0f));
-            scene4.m_Objeto["Altavoz"] = Carga.CargarParlante(scene4.m_Position + new Vector3(-2.0f));
-
-            scene4.m_Objeto["TV2"] = Carga.CargarTV(scene4.m_Position);
-            scene4.m_Objeto["Florero2"] = Carga.CargarFlorero(scene4.m_Position);
-            scene4.m_Objeto["Altavoz2"] = Carga.CargarParlante(scene4.m_Position);
+            scene3.m_Objeto["TV4"] = ObjectSerializer.Deserialize<Objeto>(file + "TV4.json");
+            scene3.m_Objeto["Florero4"] = ObjectSerializer.Deserialize<Objeto>(file + "Florero4.json");
+            scene3.m_Objeto["Altavoz4"] = ObjectSerializer.Deserialize<Objeto>(file + "Parlante4.json");
 
             camera = new Camera(new Vector3(0.0f, 0.0f, -2.0f), Size.X / (float)Size.Y);
 
@@ -188,15 +223,7 @@ namespace Hello_OpenTK
 
             GL.ClearColor(0.9f, 0.9f, 0.9f, 1.0f);
 
-            var Model = Matrix4.CreateRotationY((float)0) * Matrix4.CreateScale(4.0f) * viewprojectionMatrix;
-
-            // scene1.Render(Model);
-            // scene2.Render(Model);
-
             scene3.Draw(Matrix4.CreateScale(1.0f) * viewprojectionMatrix, new Vector3(0.0f), 0.0f, (float)zRot, 0.0f);
-
-            scene4.Draw(Matrix4.CreateScale(1.0f) * viewprojectionMatrix, new Vector3(0.0f), 0.0f, (float)zRot, 0.0f);
-            //scene4.m_Objeto["TV"].Draw(Matrix4.CreateScale(1.0f) * viewprojectionMatrix, new Vector3(0.0f), (float)zRot, 0.0f, 0.0f);
 
             SwapBuffers();
         }

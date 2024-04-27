@@ -1,19 +1,80 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OpenTK.Mathematics;
 using OpenTK.Graphics.OpenGL4;
-using OpenTK.Mathematics;
 using Hello_OpenTK.Renderer;
+
+using System.Text.Json.Serialization;
 
 namespace Hello_OpenTK.Componentes
 {
+    public struct Vector
+    {
+        public float X { get; set; }
+        public float Y { get; set; }
+        public float Z { get; set; }
+
+        public Vector(float x, float y, float z)
+        {
+            X = x;
+            Y = y;
+            Z = z;
+        }
+
+        public Vector(float x)
+        {
+            X = x;
+            Y = x;
+            Z = x;
+        }
+
+        public static Vector operator *(Vector vec, Vector scale)
+        {
+            vec.X *= scale.X;
+            vec.Y *= scale.Y;
+            vec.Z *= scale.Z;
+            return vec;
+        }
+
+        public static Vector operator +(Vector vec, Vector scale)
+        {
+            vec.X += scale.X;
+            vec.Y += scale.Y;
+            vec.Z += scale.Z;
+            return vec;
+        }
+
+        public bool Equals(Vector other)
+        {
+            if (X == other.X && Y == other.Y)
+            {
+                return Z == other.Z;
+            }
+
+            return false;
+        }
+
+        public static bool operator ==(Vector left, Vector right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Vector left, Vector right)
+        {
+            return !(left == right);
+        }
+
+    }
     public struct VertexP
     {
-        public Vector3 Position;
-        public Vector3 Color;
-        public VertexP(Vector3 position, Vector3 color)
+        [JsonPropertyName("Posicion")]
+        public Vector Position { get; set; }
+        [JsonPropertyName("Color")]
+        public Vector Color { get; set; }
+        public VertexP()
+        {
+            Position = new Vector();
+            Color = new Vector();
+        }
+        public VertexP(Vector position, Vector color)
         {
             Position = position;
             Color = color;
@@ -23,24 +84,54 @@ namespace Hello_OpenTK.Componentes
     public interface ITriangle
     {
         void Draw(Matrix4 ViewProjection, Vector3 Position = default, float xRot = 0.0f, float yRot = 0.0f, float zRot = 0.0f);
+        void Load();
         void Unbind();
     }
     public class Triangle : ITriangle
     {
-        private List<VertexP> m_Vertices { get; set; }
+        [JsonPropertyName("Vertices")]
+        public List<VertexP> m_Vertices { get; set; }
         private Shader shader;
         private int VAO, VBO;
-        public Vector3 m_Position { get; set; }
+        [JsonPropertyName("Posicion")]
+        public Vector m_Position { get; set; }
 
-        public Triangle(List<Vector3> vertices, Vector3 Color, Vector3 Position = default)
+        public Triangle()
+        {
+            m_Vertices = new List<VertexP>();
+            m_Position = new Vector(0.0f, 0.0f, 0.0f);
+            shader = new Shader("../../../shader.vert", "../../../FlatColor.frag");
+        }
+
+        public Triangle(List<Vector> vertices, Vector Color, Vector Position = default, float xRot = 0, float yRot = 0, float zRot = 0, Vector Scale = default)
         {
             this.m_Position = Position;
 
+            if (Scale == default)
+            {
+                Scale = new Vector(1.0f);
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                vertices[i] += Position;
+                vertices[i] *= Scale;
+                float x = vertices[i].X;
+                float y = vertices[i].Y;
+                float z = vertices[i].Z;
+                Vector xrot = new Vector(x, MathF.Cos(xRot) * y - MathF.Sin(xRot) * z, MathF.Sin(xRot) * y + MathF.Cos(xRot) * z);
+                vertices[i] = xrot;
+                Vector yrot = new Vector(MathF.Cos(yRot) * x + MathF.Sin(yRot) * z, y, -MathF.Sin(yRot) * x + MathF.Cos(yRot) * z);
+                vertices[i] = yrot;
+                Vector zrot = new Vector(MathF.Cos(zRot) * x - MathF.Sin(zRot) * y, MathF.Sin(zRot) * x + MathF.Cos(zRot) * y, z);
+                vertices[i] = zrot;
+            }
+
             m_Vertices = new List<VertexP>
             {
-                new VertexP(vertices[2], Color),
                 new VertexP(vertices[0], Color),
                 new VertexP(vertices[1], Color),
+                new VertexP(vertices[2], Color),
             };
 
             shader = new Shader("../../../shader.vert", "../../../FlatColor.frag");
@@ -73,7 +164,7 @@ namespace Hello_OpenTK.Componentes
             GL.BindVertexArray(VAO);
             Matrix4 matrix4 = Matrix4.Identity * Matrix4.CreateRotationX(MathHelper.DegreesToRadians(xRot))
                         * Matrix4.CreateRotationY(MathHelper.DegreesToRadians(yRot))
-                        * Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(zRot)) * 
+                        * Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(zRot)) *
                         Matrix4.CreateTranslation(Position) * ViewProjection;
             shader.SetMatrix4("viewprojection", matrix4);
             GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
@@ -85,6 +176,33 @@ namespace Hello_OpenTK.Componentes
             GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
             GL.BindVertexArray(0);
             GL.DeleteVertexArray(VAO);
+        }
+    }
+
+    public class TriangleDTO
+    {
+        [JsonPropertyName("Vertices")]
+        public List<VertexP> Vertices { get; set; }
+        [JsonPropertyName("Posicion")]
+        public Vector Position { get; set; }
+
+        public TriangleDTO()
+        {
+            Vertices = new List<VertexP>();
+            Position = new Vector(0.0f, 0.0f, 0.0f);
+        }
+
+            public TriangleDTO(List<Vector> vertices, Vector Color, Vector Position = default)
+        {
+            this.Position = Position;
+
+            Vertices = new List<VertexP>
+            {
+                new VertexP(vertices[0], Color),
+                new VertexP(vertices[1], Color),
+                new VertexP(vertices[2], Color),
+            };
+
         }
     }
 }
