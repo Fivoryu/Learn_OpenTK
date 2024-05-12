@@ -542,20 +542,20 @@ namespace Hello_OpenTK
 
         public static Objeto CargarFlorero(Vector Position = default)
         {
-            Objeto Florero = new Objeto(Position);
+            Objeto Florero = new Objeto(new Vector (0.0f, 0.9125f, 0.0f));
 
             Florero.m_Componentes = new Dictionary<string, Components>()
             {
-                ["Base"] = new Components(Florero.m_Position),
-                ["Base2"] = new Components(Florero.m_Position),
+                ["Base"] = new Components(),
+                ["Base2"] = new Components(new Vector(0.0f, 0.0f, 0.0f)),
             };
 
             Florero.m_Componentes["Base"].m_Faces = new Dictionary<string, Face>()
             {
-                ["Back"] = new Face(Florero.m_Position + Florero.m_Componentes["Base"].m_Position),
-                ["Right"] = new Face(Florero.m_Position + Florero.m_Componentes["Base"].m_Position),
-                ["Front"] = new Face(Florero.m_Position + Florero.m_Componentes["Base"].m_Position),
-                ["Left"] = new Face(Florero.m_Position + Florero.m_Componentes["Base"].m_Position),
+                ["Back"] = new Face(),
+                ["Right"] = new Face(),
+                ["Front"] = new Face(),
+                ["Left"] = new Face(),
             };
 
 
@@ -563,69 +563,61 @@ namespace Hello_OpenTK
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.125f,  0.5625f, -0.125f), new Vector(-0.325f,  1.2625f, -0.225f), new Vector(0.325f,  1.2625f, -0.225f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                Florero.m_Position + Florero.m_Componentes["Base"].m_Position + Florero.m_Componentes["Base"].m_Faces["Back"].m_Position),
+                    new Vector(-0.125f,  -0.35f, -0.125f), new Vector(-0.325f,  0.35f, -0.225f), new Vector(0.325f,  0.35f, -0.225f)
+                }, new Vector(0.2f, 0.7f, 0.85f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.125f,  0.5625f, -0.125f), new Vector(0.125f,  0.5625f, -0.125f), new Vector(0.325f,  1.2625f, -0.225f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                    Florero.m_Position + Florero.m_Componentes["Base"].m_Position + Florero.m_Componentes["Base"].m_Faces["Back"].m_Position),
+                    new Vector(-0.125f,  -0.35f, -0.125f), new Vector(0.125f,  -0.35f, -0.125f), new Vector(0.325f,  0.35f, -0.225f)
+                }, new Vector(0.2f, 0.7f, 0.85f)),
             };
 
             Florero.m_Componentes["Base"].m_Faces["Right"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(0.125f,  0.5625f, -0.125f), new Vector(0.325f,  1.2625f, -0.225f), new Vector(0.325f,  1.2625f,  0.225f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                Florero.m_Position + Florero.m_Componentes["Base"].m_Position + Florero.m_Componentes["Base"].m_Faces["Right"].m_Position),
+                    new Vector(0.125f,  -0.35f, -0.125f), new Vector(0.325f,  0.35f, -0.225f), new Vector(0.325f,  0.35f,  0.225f)
+                }, new Vector(0.2f, 0.7f, 0.85f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(0.125f,  0.5625f, -0.125f), new Vector(0.125f,  0.5625f,  0.125f), new Vector(0.325f,  1.2625f,  0.225f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                    Florero.m_Position + Florero.m_Componentes["Base"].m_Position + Florero.m_Componentes["Base"].m_Faces["Right"].m_Position),
+                    new Vector(0.125f,  -0.35f, -0.125f), new Vector(0.125f,  -0.35f,  0.125f), new Vector(0.325f,  0.35f,  0.225f)
+                }, new Vector(0.2f, 0.7f, 0.85f)),
             };
 
             Florero.m_Componentes["Base"].m_Faces["Front"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.125f,  0.5625f,  0.125f), new Vector(-0.325f,  1.2625f,  0.225f), new Vector(0.325f,  1.2625f,  0.225f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                Florero.m_Position + Florero.m_Componentes["Base"].m_Position + Florero.m_Componentes["Base"].m_Faces["Front"].m_Position),
+                    new Vector(-0.125f,  -0.35f,  0.125f), new Vector(-0.325f,  0.35f,  0.225f), new Vector(0.325f,  0.35f,  0.225f)
+                }, new Vector(0.2f, 0.7f, 0.85f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.125f,  0.5625f,  0.125f), new Vector(0.125f,  0.5625f,  0.125f), new Vector(0.325f,  1.2625f,  0.225f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                    Florero.m_Position + Florero.m_Componentes["Base"].m_Position + Florero.m_Componentes["Base"].m_Faces["Front"].m_Position),
+                    new Vector(-0.125f,  -0.35f,  0.125f), new Vector(0.125f,  -0.35f,  0.125f), new Vector(0.325f,  0.35f,  0.225f)
+                }, new Vector(0.2f, 0.7f, 0.85f)),
             };
 
             Florero.m_Componentes["Base"].m_Faces["Left"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.125f,  0.5625f,  0.125f), new Vector(-0.325f,  1.2625f,  0.225f), new Vector(-0.325f,  1.2625f, -0.225f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                Florero.m_Position + Florero.m_Componentes["Base"].m_Position + Florero.m_Componentes["Base"].m_Faces["Left"].m_Position),
+                    new Vector(-0.125f,  -0.35f,  0.125f), new Vector(-0.325f,  0.35f,  0.225f), new Vector(-0.325f,  0.35f, -0.225f)
+                }, new Vector(0.2f, 0.7f, 0.85f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.125f,  0.5625f,  0.125f), new Vector(-0.125f,  0.5625f, -0.125f), new Vector(-0.325f,  1.2625f, -0.225f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                    Florero.m_Position + Florero.m_Componentes["Base"].m_Position + Florero.m_Componentes["Base"].m_Faces["Left"].m_Position),
+                    new Vector(-0.125f,  -0.35f,  0.125f), new Vector(-0.125f,  -0.35f, -0.125f), new Vector(-0.325f,  0.35f, -0.225f)
+                }, new Vector(0.2f, 0.7f, 0.85f)),
             };
 
             Florero.m_Componentes["Base2"].m_Faces = new Dictionary<string, Face>()
             {
-                ["Back"] = new Face(Florero.m_Position + Florero.m_Componentes["Base2"].m_Position),
-                ["Right"] = new Face(Florero.m_Position + Florero.m_Componentes["Base2"].m_Position),
-                ["Front"] = new Face(Florero.m_Position + Florero.m_Componentes["Base2"].m_Position),
-                ["Left"] = new Face(Florero.m_Position + Florero.m_Componentes["Base2"].m_Position),
-                ["TopBack"] = new Face(Florero.m_Position + Florero.m_Componentes["Base2"].m_Position),
-                ["TopRight"] = new Face(Florero.m_Position + Florero.m_Componentes["Base2"].m_Position),
-                ["TopFront"] = new Face(Florero.m_Position + Florero.m_Componentes["Base2"].m_Position),
-                ["TopLeft"] = new Face(Florero.m_Position + Florero.m_Componentes["Base2"].m_Position),
-                ["Tierra"] = new Face(Florero.m_Position + Florero.m_Componentes["Base2"].m_Position),
+                ["Back"] = new Face(),
+                ["Right"] = new Face(),
+                ["Front"] = new Face(),
+                ["Left"] = new Face(),
+                ["TopBack"] = new Face(),
+                ["TopRight"] = new Face(),
+                ["TopFront"] = new Face(),
+                ["TopLeft"] = new Face(),
+                ["Tierra"] = new Face(),
             };
 
 
@@ -633,126 +625,112 @@ namespace Hello_OpenTK
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.125f - 0.0150f,  0.9625f, -0.125f + 0.0450f), new Vector(-0.325f + 0.0450f,  1.2625f, -0.225f + 0.0450f), new Vector(0.325f - 0.0450f,  1.2625f, -0.225f + 0.0450f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                Florero.m_Position + Florero.m_Componentes["Base2"].m_Position + Florero.m_Componentes["Base2"].m_Faces["Back"].m_Position),
+                    new Vector(-0.125f - 0.0150f,  0.05f, -0.125f + 0.0450f), new Vector(-0.325f + 0.0450f,  0.35f, -0.225f + 0.0450f), new Vector(0.325f - 0.0450f,  0.35f, -0.225f + 0.0450f)
+                }, new Vector(0.2f, 0.7f, 0.85f)
+                ),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.125f - 0.0150f,  0.9625f, -0.125f + 0.0450f), new Vector(0.125f + 0.0150f,  0.9625f, -0.125f + 0.0450f), new Vector(0.325f - 0.0450f,  1.2625f, -0.225f + 0.0450f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                    Florero.m_Position + Florero.m_Componentes["Base2"].m_Position + Florero.m_Componentes["Base2"].m_Faces["Back"].m_Position),
+                    new Vector(-0.125f - 0.0150f,  0.05f, -0.125f + 0.0450f), new Vector(0.125f + 0.0150f,  0.05f, -0.125f + 0.0450f), new Vector(0.325f - 0.0450f,  0.35f, -0.225f + 0.0450f)
+                }, new Vector(0.2f, 0.7f, 0.85f)
+                ),
             };
 
             Florero.m_Componentes["Base2"].m_Faces["Right"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(0.125f + 0.0150f,  0.9625f, -0.125f + 0.0450f), new Vector(0.325f - 0.0450f,  1.2625f, -0.225f + 0.0450f), new Vector(0.325f - 0.0450f,  1.2625f,  0.225f - 0.0450f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                Florero.m_Position + Florero.m_Componentes["Base2"].m_Position + Florero.m_Componentes["Base2"].m_Faces["Right"].m_Position),
+                    new Vector(0.125f + 0.0150f,  0.05f, -0.125f + 0.0450f), new Vector(0.325f - 0.0450f,  0.35f, -0.225f + 0.0450f), new Vector(0.325f - 0.0450f,  0.35f,  0.225f - 0.0450f)
+                }, new Vector(0.2f, 0.7f, 0.85f)
+                ),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(0.125f + 0.0150f,  0.9625f, -0.125f + 0.0450f), new Vector(0.125f + 0.0150f,  0.9625f,  0.125f - 0.0450f), new Vector(0.325f - 0.0450f,  1.2625f,  0.225f - 0.0450f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                    Florero.m_Position + Florero.m_Componentes["Base2"].m_Position + Florero.m_Componentes["Base2"].m_Faces["Right"].m_Position),
+                    new Vector(0.125f + 0.0150f,  0.05f, -0.125f + 0.0450f), new Vector(0.125f + 0.0150f,  0.05f,  0.125f - 0.0450f), new Vector(0.325f - 0.0450f,  0.35f,  0.225f - 0.0450f)
+                }, new Vector(0.2f, 0.7f, 0.85f)
+                ),
             };
 
             Florero.m_Componentes["Base2"].m_Faces["Front"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.125f - 0.0150f,  0.9625f,  0.125f - 0.0450f), new Vector(-0.325f + 0.0450f,  1.2625f,  0.225f - 0.0450f), new Vector(0.325f - 0.0450f,  1.2625f,  0.225f - 0.0450f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                Florero.m_Position + Florero.m_Componentes["Base2"].m_Position + Florero.m_Componentes["Base2"].m_Faces["Front"].m_Position),
+                    new Vector(-0.125f - 0.0150f,  0.05f,  0.125f - 0.0450f), new Vector(-0.325f + 0.0450f,  0.35f,  0.225f - 0.0450f), new Vector(0.325f - 0.0450f,  0.35f,  0.225f - 0.0450f)
+                }, new Vector(0.2f, 0.7f, 0.85f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.125f - 0.0150f,  0.9625f,  0.125f - 0.0450f), new Vector(0.125f + 0.0150f,  0.9625f,  0.125f - 0.0450f), new Vector(0.325f - 0.0450f,  1.2625f,  0.225f - 0.0450f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                    Florero.m_Position + Florero.m_Componentes["Base2"].m_Position + Florero.m_Componentes["Base2"].m_Faces["Front"].m_Position),
+                    new Vector(-0.125f - 0.0150f,  0.05f,  0.125f - 0.0450f), new Vector(0.125f + 0.0150f,  0.05f,  0.125f - 0.0450f), new Vector(0.325f - 0.0450f,  0.35f,  0.225f - 0.0450f)
+                }, new Vector(0.2f, 0.7f, 0.85f)),
             };
 
             Florero.m_Componentes["Base2"].m_Faces["Left"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.125f - 0.0150f,  0.9625f,  0.125f - 0.0450f), new Vector(-0.325f + 0.0450f,  1.2625f,  0.225f - 0.0450f), new Vector(-0.325f + 0.0450f,  1.2625f, -0.225f + 0.0450f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                Florero.m_Position + Florero.m_Componentes["Base2"].m_Position + Florero.m_Componentes["Base2"].m_Faces["Left"].m_Position),
+                    new Vector(-0.125f - 0.0150f,  0.05f,  0.125f - 0.0450f), new Vector(-0.325f + 0.0450f,  0.35f,  0.225f - 0.0450f), new Vector(-0.325f + 0.0450f,  0.35f, -0.225f + 0.0450f)
+                }, new Vector(0.2f, 0.7f, 0.85f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.125f - 0.0150f,  0.9625f,  0.125f - 0.0450f), new Vector(-0.125f - 0.0150f,  0.9625f, -0.125f + 0.0450f), new Vector(-0.325f + 0.0450f,  1.2625f, -0.225f + 0.0450f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                    Florero.m_Position + Florero.m_Componentes["Base2"].m_Position + Florero.m_Componentes["Base2"].m_Faces["Left"].m_Position),
+                    new Vector(-0.125f - 0.0150f,  0.05f,  0.125f - 0.0450f), new Vector(-0.125f - 0.0150f,  0.05f, -0.125f + 0.0450f), new Vector(-0.325f + 0.0450f,  0.35f, -0.225f + 0.0450f)
+                }, new Vector(0.2f, 0.7f, 0.85f)),
             };
 
             Florero.m_Componentes["Base2"].m_Faces["TopBack"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.325f,  1.2625f, -0.225f), new Vector(-0.325f + 0.0450f,  1.2625f, -0.225f + 0.0450f), new Vector(0.325f - 0.0450f,  1.2625f, -0.225f + 0.0450f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                Florero.m_Position + Florero.m_Componentes["Base2"].m_Position + Florero.m_Componentes["Base2"].m_Faces["TopBack"].m_Position),
+                    new Vector(-0.325f,  0.35f, -0.225f), new Vector(-0.325f + 0.0450f,  0.35f, -0.225f + 0.0450f), new Vector(0.325f - 0.0450f,  0.35f, -0.225f + 0.0450f)
+                }, new Vector(0.2f, 0.7f, 0.85f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.325f,  1.2625f, -0.225f), new Vector(0.325f,  1.2625f, -0.225f), new Vector(0.325f - 0.0450f,  1.2625f, -0.225f + 0.0450f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                    Florero.m_Position + Florero.m_Componentes["Base2"].m_Position + Florero.m_Componentes["Base2"].m_Faces["TopBack"].m_Position),
+                    new Vector(-0.325f,  0.35f, -0.225f), new Vector(0.325f,  0.35f, -0.225f), new Vector(0.325f - 0.0450f,  0.35f, -0.225f + 0.0450f)
+                }, new Vector(0.2f, 0.7f, 0.85f)),
             };
 
             Florero.m_Componentes["Base2"].m_Faces["TopRight"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(0.325f,  1.2625f, -0.225f), new Vector(0.325f - 0.0450f,  1.2625f, -0.225f + 0.0450f), new Vector(0.325f - 0.0450f,  1.2625f,  0.225f - 0.0450f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                Florero.m_Position + Florero.m_Componentes["Base2"].m_Position + Florero.m_Componentes["Base2"].m_Faces["TopRight"].m_Position),
+                    new Vector(0.325f,  0.35f, -0.225f), new Vector(0.325f - 0.0450f,  0.35f, -0.225f + 0.0450f), new Vector(0.325f - 0.0450f,  0.35f,  0.225f - 0.0450f)
+                }, new Vector(0.2f, 0.7f, 0.85f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(0.325f,  1.2625f, -0.225f), new Vector(0.325f,  1.2625f,  0.225f), new Vector(0.325f - 0.0450f,  1.2625f,  0.225f - 0.0450f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                    Florero.m_Position + Florero.m_Componentes["Base2"].m_Position + Florero.m_Componentes["Base2"].m_Faces["TopRight"].m_Position),
+                    new Vector(0.325f,  0.35f, -0.225f), new Vector(0.325f,  0.35f,  0.225f), new Vector(0.325f - 0.0450f,  0.35f,  0.225f - 0.0450f)
+                }, new Vector(0.2f, 0.7f, 0.85f)),
             };
 
             Florero.m_Componentes["Base2"].m_Faces["TopFront"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(0.325f,  1.2625f,  0.225f), new Vector(0.325f - 0.0450f,  1.2625f,  0.225f - 0.0450f), new Vector(-0.325f + 0.0450f,  1.2625f,  0.225f - 0.0450f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                Florero.m_Position + Florero.m_Componentes["Base2"].m_Position + Florero.m_Componentes["Base2"].m_Faces["TopFront"].m_Position),
+                    new Vector(0.325f,  0.35f,  0.225f), new Vector(0.325f - 0.0450f,  0.35f,  0.225f - 0.0450f), new Vector(-0.325f + 0.0450f,  0.35f,  0.225f - 0.0450f)
+                }, new Vector(0.2f, 0.7f, 0.85f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(0.325f,  1.2625f,  0.225f), new Vector(-0.325f,  1.2625f,  0.225f), new Vector(-0.325f + 0.0450f,  1.2625f,  0.225f - 0.0450f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                    Florero.m_Position + Florero.m_Componentes["Base2"].m_Position + Florero.m_Componentes["Base2"].m_Faces["TopFront"].m_Position),
+                    new Vector(0.325f,  0.35f,  0.225f), new Vector(-0.325f,  0.35f,  0.225f), new Vector(-0.325f + 0.0450f,  0.35f,  0.225f - 0.0450f)
+                }, new Vector(0.2f, 0.7f, 0.85f)),
             };
 
             Florero.m_Componentes["Base2"].m_Faces["TopLeft"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.325f,  1.2625f,  0.225f), new Vector(-0.325f + 0.0450f,  1.2625f,  0.225f - 0.0450f), new Vector(-0.325f + 0.0450f,  1.2625f, -0.225f + 0.0450f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                Florero.m_Position + Florero.m_Componentes["Base2"].m_Position + Florero.m_Componentes["Base2"].m_Faces["TopLeft"].m_Position),
+                    new Vector(-0.325f,  0.35f,  0.225f), new Vector(-0.325f + 0.0450f,  0.35f,  0.225f - 0.0450f), new Vector(-0.325f + 0.0450f,  0.35f, -0.225f + 0.0450f)
+                }, new Vector(0.2f, 0.7f, 0.85f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.325f,  1.2625f,  0.225f), new Vector(-0.325f,  1.2625f, -0.225f), new Vector(-0.325f + 0.0450f,  1.2625f, -0.225f + 0.0450f)
-                }, new Vector(0.2f, 0.7f, 0.85f),
-                    Florero.m_Position + Florero.m_Componentes["Base2"].m_Position + Florero.m_Componentes["Base2"].m_Faces["TopLeft"].m_Position),
+                    new Vector(-0.325f,  0.35f,  0.225f), new Vector(-0.325f,  0.35f, -0.225f), new Vector(-0.325f + 0.0450f,  0.35f, -0.225f + 0.0450f)
+                }, new Vector(0.2f, 0.7f, 0.85f)),
             };
 
             Florero.m_Componentes["Base2"].m_Faces["Tierra"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.125f - 0.0150f,  0.9625f, -0.125f + 0.0450f), new Vector(-0.125f - 0.0150f,  0.9625f,  0.125f - 0.0450f), new Vector(0.125f + 0.0150f,  0.9625f,  0.125f - 0.0450f)
-                }, new Vector(00.4f, 0.2f, 0.2f),
-                Florero.m_Position + Florero.m_Componentes["Base2"].m_Position + Florero.m_Componentes["Base2"].m_Faces["Tierra"].m_Position),
+                    new Vector(-0.125f - 0.0150f,  0.05f, -0.125f + 0.0450f), new Vector(-0.125f - 0.0150f,  0.05f,  0.125f - 0.0450f), new Vector(0.125f + 0.0150f,  0.05f,  0.125f - 0.0450f)
+                }, new Vector(00.4f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.125f - 0.0150f,  0.9625f, -0.125f + 0.0450f), new Vector(0.125f + 0.0150f,  0.9625f, -0.125f + 0.0450f), new Vector(0.125f + 0.0150f,  0.9625f,  0.125f - 0.0450f)
-                }, new Vector(0.4f, 0.2f, 0.2f),
-                    Florero.m_Position + Florero.m_Componentes["Base2"].m_Position + Florero.m_Componentes["Base2"].m_Faces["Tierra"].m_Position),
+                    new Vector(-0.125f - 0.0150f,  0.05f, -0.125f + 0.0450f), new Vector(0.125f + 0.0150f,  0.05f, -0.125f + 0.0450f), new Vector(0.125f + 0.0150f,  0.05f,  0.125f - 0.0450f)
+                }, new Vector(0.4f, 0.2f, 0.2f)),
             };
 
 
@@ -760,189 +738,167 @@ namespace Hello_OpenTK
         }
         public static Objeto CargarParlante(Vector Position = default)
         {
-            Objeto Parlante = new Objeto(Position);
+            Objeto Parlante = new Objeto(new Vector(0.0f, -1.875f, 0.0f));
 
             Parlante.m_Componentes = new Dictionary<string, Components>()
             {
-                ["Base"] = new Components(Parlante.m_Position),
-                ["MidRange"] = new Components(Parlante.m_Position),
-                ["Woofer"] = new Components(Parlante.m_Position),
+                ["Base"] = new Components(new Vector(0.0f)),
+                ["MidRange"] = new Components(new Vector(0.0f, 0.5f, -0.54f)),
+                ["Woofer"] = new Components(new Vector(0.0f, -0.5f, -0.54f)),
             };
 
             Parlante.m_Componentes["Base"].m_Faces = new Dictionary<string, Face>()
             {
-                ["Back"] = new Face(Parlante.m_Position + Parlante.m_Componentes["Base"].m_Position),
-                ["Right"] = new Face(Parlante.m_Position + Parlante.m_Componentes["Base"].m_Position),
-                ["Front"] = new Face(Parlante.m_Position + Parlante.m_Componentes["Base"].m_Position),
-                ["Left"] = new Face(Parlante.m_Position + Parlante.m_Componentes["Base"].m_Position),
-                ["Top"] = new Face(Parlante.m_Position + Parlante.m_Componentes["Base"].m_Position),
-                ["Bottom"] = new Face(Parlante.m_Position + Parlante.m_Componentes["Base"].m_Position),
+                ["Back"] = new Face(),
+                ["Right"] = new Face(),
+                ["Front"] = new Face(),
+                ["Left"] = new Face(),
+                ["Top"] = new Face(),
+                ["Bottom"] = new Face(),
             };
 
             Parlante.m_Componentes["Base"].m_Faces["Back"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.75f, -2.875f, -0.525f), new Vector(-0.75f, -0.875f, -0.525f), new Vector(0.75f, -0.875f, -0.525f)
-                }, new Vector(0.1f, 0.1f, 0.1f),
-                Parlante.m_Position + Parlante.m_Componentes["Base"].m_Position + Parlante.m_Componentes["Base"].m_Faces["Back"].m_Position),
+                    new Vector(-0.75f, -1.0f, -0.525f), new Vector(-0.75f, 1.0f, -0.525f), new Vector(0.75f, 1.0f, -0.525f)
+                }, new Vector(0.1f, 0.1f, 0.1f), new Vector()),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.75f, -2.875f, -0.525f), new Vector(0.75f, -2.875f, -0.525f), new Vector(0.75f, -0.875f, -0.525f)
-                }, new Vector(0.1f, 0.1f, 0.1f),
-                    Parlante.m_Position + Parlante.m_Componentes["Base"].m_Position + Parlante.m_Componentes["Base"].m_Faces["Back"].m_Position),
+                    new Vector(-0.75f, -1.0f, -0.525f), new Vector(0.75f, -1.0f, -0.525f), new Vector(0.75f, 1.0f, -0.525f)
+                }, new Vector(0.1f, 0.1f, 0.1f), new Vector()),
             };
 
             Parlante.m_Componentes["Base"].m_Faces["Right"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.75f, -2.875f, -0.525f), new Vector(-0.75f, -0.875f, -0.525f), new Vector(0.75f, -0.875f, -0.525f)
-                }, new Vector(0.1f, 0.1f, 0.1f),
-                Parlante.m_Position + Parlante.m_Componentes["Base"].m_Position + Parlante.m_Componentes["Base"].m_Faces["Right"].m_Position),
+                    new Vector(-0.75f, -1.0f, -0.525f), new Vector(-0.75f, 1.0f, -0.525f), new Vector(0.75f, 1.0f, -0.525f)
+                }, new Vector(0.1f, 0.1f, 0.1f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.75f, -2.875f, -0.525f), new Vector(0.75f, -2.875f, -0.525f), new Vector(0.75f, -0.875f, -0.525f)
-                }, new Vector(0.1f, 0.1f, 0.1f),
-                    Parlante.m_Position + Parlante.m_Componentes["Base"].m_Position + Parlante.m_Componentes["Base"].m_Faces["Right"].m_Position),
+                    new Vector(-0.75f, -1.0f, -0.525f), new Vector(0.75f, -1.0f, -0.525f), new Vector(0.75f, 1.0f, -0.525f)
+                }, new Vector(0.1f, 0.1f, 0.1f))
             };
 
             Parlante.m_Componentes["Base"].m_Faces["Front"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(0.75f, -2.875f, -0.525f), new Vector(0.75f, -0.875f, -0.525f), new Vector(0.75f, -0.875f,  0.525f)
-                }, new Vector(0.1f, 0.1f, 0.1f),
-                Parlante.m_Position + Parlante.m_Componentes["Base"].m_Position + Parlante.m_Componentes["Base"].m_Faces["Front"].m_Position),
+                    new Vector(0.75f, -1.0f, -0.525f), new Vector(0.75f, 1.0f, -0.525f), new Vector(0.75f, 1.0f,  0.525f)
+                }, new Vector(0.1f, 0.1f, 0.1f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(0.75f, -2.875f, -0.525f), new Vector(0.75f, -2.875f,  0.525f), new Vector(0.75f, -0.875f,  0.525f)
-                }, new Vector(0.1f, 0.1f, 0.1f),
-                    Parlante.m_Position + Parlante.m_Componentes["Base"].m_Position + Parlante.m_Componentes["Base"].m_Faces["Front"].m_Position),
+                    new Vector(0.75f, -1.0f, -0.525f), new Vector(0.75f, -1.0f,  0.525f), new Vector(0.75f, 1.0f,  0.525f)
+                }, new Vector(0.1f, 0.1f, 0.1f)),
             };
 
             Parlante.m_Componentes["Base"].m_Faces["Left"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(0.75f, -2.875f,  0.525f), new Vector(0.75f, -0.875f,  0.525f), new Vector(-0.75f, -0.875f,  0.525f)
-                }, new Vector(0.1f, 0.1f, 0.1f),
-                Parlante.m_Position + Parlante.m_Componentes["Base"].m_Position + Parlante.m_Componentes["Base"].m_Faces["Left"].m_Position),
+                    new Vector(0.75f, -1.0f,  0.525f), new Vector(0.75f, 1.0f,  0.525f), new Vector(-0.75f, 1.0f,  0.525f)
+                }, new Vector(0.1f, 0.1f, 0.1f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(0.75f, -2.875f,  0.525f), new Vector(-0.75f, -2.875f,  0.525f), new Vector(-0.75f, -0.875f,  0.525f)
-                }, new Vector(0.1f, 0.1f, 0.1f),
-                    Parlante.m_Position + Parlante.m_Componentes["Base"].m_Position + Parlante.m_Componentes["Base"].m_Faces["Left"].m_Position),
+                    new Vector(0.75f, -1.0f,  0.525f), new Vector(-0.75f, -1.0f,  0.525f), new Vector(-0.75f, 1.0f,  0.525f)
+                }, new Vector(0.1f, 0.1f, 0.1f)),
             };
 
             Parlante.m_Componentes["Base"].m_Faces["Right"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.75f, -2.875f,  0.525f), new Vector(-0.75f, -0.875f,  0.525f), new Vector(-0.75f, -0.875f, -0.525f)
-                }, new Vector(0.1f, 0.1f, 0.1f),
-                Parlante.m_Position + Parlante.m_Componentes["Base"].m_Position + Parlante.m_Componentes["Base"].m_Faces["Right"].m_Position),
+                    new Vector(-0.75f, -1.0f,  0.525f), new Vector(-0.75f, 1.0f,  0.525f), new Vector(-0.75f, 1.0f, -0.525f)
+                }, new Vector(0.1f, 0.1f, 0.1f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.75f, -2.875f,  0.525f), new Vector(-0.75f, -2.875f, -0.525f), new Vector(-0.75f, -0.875f, -0.525f)
-                }, new Vector(0.1f, 0.1f, 0.1f),
-                    Parlante.m_Position + Parlante.m_Componentes["Base"].m_Position + Parlante.m_Componentes["Base"].m_Faces["Right"].m_Position),
+                    new Vector(-0.75f, -1.0f,  0.525f), new Vector(-0.75f, -1.0f, -0.525f), new Vector(-0.75f, 1.0f, -0.525f)
+                }, new Vector(0.1f, 0.1f, 0.1f)),
             };
 
             Parlante.m_Componentes["Base"].m_Faces["Top"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.75f, -0.875f, -0.525f), new Vector(-0.75f, -0.875f,  0.525f), new Vector(0.75f, -0.875f,  0.525f)
-                }, new Vector(0.1f, 0.1f, 0.1f),
-                Parlante.m_Position + Parlante.m_Componentes["Base"].m_Position + Parlante.m_Componentes["Base"].m_Faces["Top"].m_Position),
+                    new Vector(-0.75f, 1.0f, -0.525f), new Vector(-0.75f, 1.0f,  0.525f), new Vector(0.75f, 1.0f,  0.525f)
+                }, new Vector(0.1f, 0.1f, 0.1f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.75f, -0.875f, -0.525f), new Vector(0.75f, -0.875f, -0.525f), new Vector(0.75f, -0.875f,  0.525f)
-                }, new Vector(0.1f, 0.1f, 0.1f),
-                    Parlante.m_Position + Parlante.m_Componentes["Base"].m_Position + Parlante.m_Componentes["Base"].m_Faces["Top"].m_Position),
+                    new Vector(-0.75f, 1.0f, -0.525f), new Vector(0.75f, 1.0f, -0.525f), new Vector(0.75f, 1.0f,  0.525f)
+                }, new Vector(0.1f, 0.1f, 0.1f)),
             };
 
             Parlante.m_Componentes["Base"].m_Faces["Bottom"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.75f, -2.875f, -0.525f), new Vector(-0.75f, -2.875f,  0.525f), new Vector(0.75f, -2.875f,  0.525f)
-                }, new Vector(0.1f, 0.1f, 0.1f),
-                Parlante.m_Position + Parlante.m_Componentes["Base"].m_Position + Parlante.m_Componentes["Base"].m_Faces["Back"].m_Position),
+                    new Vector(-0.75f, -1.0f, -0.525f), new Vector(-0.75f, -1.0f,  0.525f), new Vector(0.75f, -1.0f,  0.525f)
+                }, new Vector(0.1f, 0.1f, 0.1f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.75f, -2.875f, -0.525f), new Vector(0.75f, -2.875f, -0.525f), new Vector(0.75f, -2.875f,  0.525f)
-                }, new Vector(0.1f, 0.1f, 0.1f),
-                    Parlante.m_Position + Parlante.m_Componentes["Base"].m_Position + Parlante.m_Componentes["Base"].m_Faces["Back"].m_Position),
+                    new Vector(-0.75f, -1.0f, -0.525f), new Vector(0.75f, -1.0f, -0.525f), new Vector(0.75f, -1.0f,  0.525f)
+                }, new Vector(0.1f, 0.1f, 0.1f)),
             };
 
             Parlante.m_Componentes["MidRange"].m_Faces = new Dictionary<string, Face>()
             {
-                ["Cuadrado1"] = new Face(Parlante.m_Position + Parlante.m_Componentes["MidRange"].m_Position),
-                ["Cuadrado2"] = new Face(Parlante.m_Position + Parlante.m_Componentes["MidRange"].m_Position),
+                ["Cuadrado1"] = new Face(),
+                ["Cuadrado2"] = new Face(),
             };
 
             Parlante.m_Componentes["MidRange"].m_Faces["Cuadrado1"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.2f, -1.5f, 0.535f), new Vector(-0.2f, -1.1f, 0.535f), new Vector(0.2f, -1.1f, 0.535f)
-                }, new Vector(0.6f, 0.6f, 0.6f),
-                Parlante.m_Position + Parlante.m_Componentes["MidRange"].m_Position + Parlante.m_Componentes["MidRange"].m_Faces["Cuadrado1"].m_Position),
+                    new Vector(-0.2f, -0.2f, 0.0f), new Vector(-0.2f, 0.2f, 0.0f), new Vector(0.2f, 0.2f, 0.0f)
+                }, new Vector(0.6f, 0.6f, 0.6f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.2f, -1.5f, 0.535f), new Vector(0.2f, -1.5f, 0.535f), new Vector(0.2f, -1.1f, 0.535f)
-                }, new Vector(0.6f, 0.6f, 0.6f),
-                    Parlante.m_Position + Parlante.m_Componentes["MidRange"].m_Position + Parlante.m_Componentes["MidRange"].m_Faces["Cuadrado1"].m_Position),
+                    new Vector(-0.2f, -0.2f, 0.0f), new Vector(0.2f, -0.2f, 0.0f), new Vector(0.2f, 0.2f, 0.0f)
+                }, new Vector(0.6f, 0.6f, 0.6f)),
             };
 
             Parlante.m_Componentes["MidRange"].m_Faces["Cuadrado2"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.1f, -1.4f, 0.545f), new Vector(-0.1f, -1.2f, 0.545f), new Vector(0.1f, -1.2f, 0.545f)
-                }, new Vector(0.8f, 0.8f, 0.8f),
-                Parlante.m_Position + Parlante.m_Componentes["MidRange"].m_Position + Parlante.m_Componentes["MidRange"].m_Faces["Cuadrado2"].m_Position),
+                    new Vector(-0.1f, -0.1f, -0.01f), new Vector(-0.1f, 0.1f, -0.01f), new Vector(0.1f, 0.1f, -0.01f)
+                }, new Vector(0.8f, 0.8f, 0.8f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.1f, -1.4f, 0.545f), new Vector(0.1f, -1.4f, 0.545f), new Vector(0.1f, -1.2f, 0.545f)
-                }, new Vector(0.8f, 0.8f, 0.8f),
-                    Parlante.m_Position + Parlante.m_Componentes["MidRange"].m_Position + Parlante.m_Componentes["MidRange"].m_Faces["Cuadrado2"].m_Position),
+                    new Vector(-0.1f, -0.1f, -0.01f), new Vector(0.1f, -0.1f, -0.01f), new Vector(0.1f, 0.1f, -0.01f)
+                }, new Vector(0.8f, 0.8f, 0.8f)),
             };
 
             Parlante.m_Componentes["Woofer"].m_Faces = new Dictionary<string, Face>()
             {
-                ["Cuadrado1"] = new Face(Parlante.m_Position + Parlante.m_Componentes["Woofer"].m_Position),
-                ["Cuadrado2"] = new Face(Parlante.m_Position + Parlante.m_Componentes["Woofer"].m_Position),
+                ["Cuadrado1"] = new Face(),
+                ["Cuadrado2"] = new Face(),
             };
 
             Parlante.m_Componentes["Woofer"].m_Faces["Cuadrado1"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.4f, -2.5f, 0.535f), new Vector(-0.4f, -1.7f, 0.535f), new Vector(0.4f, -1.7f, 0.535f)
-                }, new Vector(0.6f, 0.6f, 0.6f),
-                Parlante.m_Position + Parlante.m_Componentes["Woofer"].m_Position + Parlante.m_Componentes["Woofer"].m_Faces["Cuadrado1"].m_Position),
+                    new Vector(-0.4f, -0.4f, 0.0f), new Vector(-0.4f, 0.4f, 0.0f), new Vector(0.4f, 0.4f, 0.0f)
+                }, new Vector(0.6f, 0.6f, 0.6f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.4f, -2.5f, 0.535f), new Vector(0.4f, -2.5f, 0.535f), new Vector(0.4f, -1.7f, 0.535f)
-                }, new Vector(0.6f, 0.6f, 0.6f),
-                    Parlante.m_Position + Parlante.m_Componentes["Woofer"].m_Position + Parlante.m_Componentes["Woofer"].m_Faces["Cuadrado1"].m_Position),
+                    new Vector(-0.4f, -0.4f, 0.0f), new Vector(0.4f, -0.4f, 0.0f), new Vector(0.4f, 0.4f, 0.0f)
+                }, new Vector(0.6f, 0.6f, 0.6f)),
             };
 
             Parlante.m_Componentes["Woofer"].m_Faces["Cuadrado2"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.3f, -2.4f, 0.545f), new Vector(-0.3f, -1.8f, 0.545f), new Vector(0.3f, -1.8f, 0.545f)
-                }, new Vector(0.8f, 0.8f, 0.8f),
-                Parlante.m_Position + Parlante.m_Componentes["Woofer"].m_Position + Parlante.m_Componentes["Woofer"].m_Faces["Cuadrado2"].m_Position),
+                    new Vector(-0.3f, -0.3f, -0.01f), new Vector(-0.3f, 0.3f, -0.01f), new Vector(0.3f, 0.3f, -0.01f)
+                }, new Vector(0.8f, 0.8f, 0.8f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.3f, -2.4f, 0.545f), new Vector(0.3f, -2.4f, 0.545f), new Vector(0.3f, -1.8f, 0.545f)
-                }, new Vector(0.8f, 0.8f, 0.8f),
-                    Parlante.m_Position + Parlante.m_Componentes["Woofer"].m_Position + Parlante.m_Componentes["Woofer"].m_Faces["Cuadrado2"].m_Position),
+                    new Vector(-0.3f, -0.3f, -0.01f), new Vector(0.3f, -0.3f, -0.01f), new Vector(0.3f, 0.3f, -0.01f)
+                }, new Vector(0.8f, 0.8f, 0.8f)),
             };
 
             return Parlante;

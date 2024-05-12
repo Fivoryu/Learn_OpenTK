@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Programacion_grafica\\Learn_OpenTK\\Learn_OpenTK\\Hello_OpenTK.csproj": {}
+    "C:\\Programacion_grafica\\Learn_OpenTK3\\Learn_OpenTK\\Hello_OpenTK.csproj": {}
   },
   "projects": {
-    "C:\\Programacion_grafica\\Learn_OpenTK\\Learn_OpenTK\\Hello_OpenTK.csproj": {
+    "C:\\Programacion_grafica\\Learn_OpenTK3\\Learn_OpenTK\\Hello_OpenTK.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Programacion_grafica\\Learn_OpenTK\\Learn_OpenTK\\Hello_OpenTK.csproj",
+        "projectUniqueName": "C:\\Programacion_grafica\\Learn_OpenTK3\\Learn_OpenTK\\Hello_OpenTK.csproj",
         "projectName": "Hello_OpenTK",
-        "projectPath": "C:\\Programacion_grafica\\Learn_OpenTK\\Learn_OpenTK\\Hello_OpenTK.csproj",
+        "projectPath": "C:\\Programacion_grafica\\Learn_OpenTK3\\Learn_OpenTK\\Hello_OpenTK.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Programacion_grafica\\Learn_OpenTK\\Learn_OpenTK\\obj\\",
+        "outputPath": "C:\\Programacion_grafica\\Learn_OpenTK3\\Learn_OpenTK\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -45,9 +45,29 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "ImGui.NET": {
+              "target": "Package",
+              "version": "[1.89.9.2, )"
+            },
+            "Microsoft.Extensions.FileProviders.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.VisualBasic": {
+              "target": "Package",
+              "version": "[10.3.0, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "OpenDialog": {
+              "target": "Package",
+              "version": "[1.1.1, )"
+            },
+            "OpenDialogWindowHandler": {
+              "target": "Package",
+              "version": "[0.0.0.1, )"
             },
             "OpenTK": {
               "target": "Package",
@@ -56,6 +76,26 @@
             "StbImageSharp": {
               "target": "Package",
               "version": "[2.27.13, )"
+            },
+            "System.IO.FileSystem": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "System.Reactive.Windows.Forms": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "System.Windows.Forms.Ribbon35": {
+              "target": "Package",
+              "version": "[3.5.8, )"
+            },
+            "WindowsAPICodePack-Shell": {
+              "target": "Package",
+              "version": "[1.1.1, )"
+            },
+            "Zenseless.OpenTK.GUI": {
+              "target": "Package",
+              "version": "[0.1.25, )"
             }
           },
           "imports": [

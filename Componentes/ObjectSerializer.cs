@@ -10,6 +10,7 @@ namespace Hello_OpenTK.Componentes
 {
     public class ObjectSerializer
     {
+        
         public static void Serialize<T>(T obj, string filepath)
         {
 

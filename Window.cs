@@ -1,28 +1,28 @@
-﻿using System;
-using System.IO;
-
-using Hello_OpenTK.Renderer;
+﻿using Hello_OpenTK.Renderer;
 using Hello_OpenTK.Componentes;
+using Hello_OpenTK.ImGuiLayer;
+
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.GraphicsLibraryFramework;
-using StbImageSharp;
-
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Data;
+using Zenseless.OpenTK;
+using Zenseless.OpenTK.GUI;
+using ImGuiNET;
 
 namespace Hello_OpenTK
 {   
-    internal class Game : GameWindow
+    public class Game : GameWindow
     {
-        private Scene scene3 = new Scene();
-        private Scene scene4 = new Scene(new Vector(1.0f));
 
         private const string file = "../../../assets/";
 
+        public ImGuILayer imgui;
+        public ImGuiFacade GUI;
+
+        public Scene scene3;
+        
         private double time = 0;
 
         private Camera camera;
@@ -103,6 +103,7 @@ namespace Hello_OpenTK
 
                 camera.Yaw += deltaX * sensitivity;
                 camera.Pitch -= deltaY * sensitivity;
+                firstMove = true;
             }
 
             if (input.IsKeyDown(Keys.LeftControl) && input.IsKeyDown(Keys.G) && input.IsKeyDown(Keys.T))
@@ -190,23 +191,25 @@ namespace Hello_OpenTK
         {
             base.OnLoad();
 
-            scene3.m_Objeto["TV"] = ObjectSerializer.Deserialize<Objeto>(file + "TV.json");
-            scene3.m_Objeto["Florero"] = ObjectSerializer.Deserialize<Objeto>(file + "Florero.json");
-            scene3.m_Objeto["Altavoz"] = ObjectSerializer.Deserialize<Objeto>(file + "Parlante.json");
+            scene3 = new Scene();
 
-            scene3.m_Objeto["TV2"] = ObjectSerializer.Deserialize<Objeto>(file + "TV2.json");
-            scene3.m_Objeto["Florero2"] = ObjectSerializer.Deserialize<Objeto>(file + "Florero2.json");
-            scene3.m_Objeto["Altavoz2"] = ObjectSerializer.Deserialize<Objeto>(file + "Parlante2.json");
+            //scene3 = ObjectSerializer.Deserialize<Scene>(file + "Scene1.json");
 
-            scene3.m_Objeto["TV4"] = ObjectSerializer.Deserialize<Objeto>(file + "TV4.json");
-            scene3.m_Objeto["Florero4"] = ObjectSerializer.Deserialize<Objeto>(file + "Florero4.json");
-            scene3.m_Objeto["Altavoz4"] = ObjectSerializer.Deserialize<Objeto>(file + "Parlante4.json");
+
+            //scene3.Load();
 
             camera = new Camera(new Vector3(0.0f, 0.0f, -2.0f), Size.X / (float)Size.Y);
 
-            CursorState = CursorState.Grabbed;
+            GUI = new ImGuiFacade(this);
+            imgui = new(this);
 
-            GL.Enable(EnableCap.DepthTest);
+            GUI.LoadFontDroidSans(15);
+
+            //imgui = new ImGuilayer(ref scene3, ref camera);
+
+            //imgui.Update();
+
+            // CursorState = CursorState.Grabbed;
         }
 
         public double zRot = 0.0f;
@@ -214,16 +217,21 @@ namespace Hello_OpenTK
         protected override void OnRenderFrame(FrameEventArgs e)
         {
             base.OnRenderFrame(e);
+
             var viewprojectionMatrix = camera.GetViewMatrix() * camera.GetProjectionMatrix();
 
             // time += 15.0f * e.Time;
-            zRot += 0.2f;  
+            zRot += 0.2f;
 
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
             GL.ClearColor(0.9f, 0.9f, 0.9f, 1.0f);
 
-            scene3.Draw(Matrix4.CreateScale(1.0f) * viewprojectionMatrix, new Vector3(0.0f), 0.0f, (float)zRot, 0.0f);
+            scene3.Draw(viewprojectionMatrix);
+
+            imgui.Render();
+            GUI.Render(this.ClientSize);
+            GL.Enable(EnableCap.DepthTest);
 
             SwapBuffers();
         }
@@ -239,7 +247,6 @@ namespace Hello_OpenTK
         protected override void OnUnload()
         {
             scene3.Unbind();
-            scene4.Unbind();
 
             base.OnUnload();
         }

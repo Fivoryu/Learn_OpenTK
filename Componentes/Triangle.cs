@@ -42,6 +42,22 @@ namespace Hello_OpenTK.Componentes
             return vec;
         }
 
+        public static Vector operator -(Vector vec, Vector scale)
+        {
+            vec.X -= scale.X;
+            vec.Y -= scale.Y;
+            vec.Z -= scale.Z;
+            return vec;
+        }
+
+        public static Vector operator /(Vector vec, float div)
+        {
+            vec.X /= div;
+            vec.Y /= div;
+            vec.Z /= div;
+            return vec;
+        }
+
         public bool Equals(Vector other)
         {
             if (X == other.X && Y == other.Y)
@@ -81,11 +97,65 @@ namespace Hello_OpenTK.Componentes
         }
     }
 
+    public struct TransformComponent
+    {
+        [JsonPropertyName("Translation")]
+        public Vector Translation { get; set; }
+        [JsonPropertyName("Rotation")]
+        public Vector Rotation { get; set; }
+        [JsonPropertyName("Scale")]
+        public Vector Scale { get; set; }
+
+        public TransformComponent()
+        {
+            Translation = new Vector();
+            Rotation = new Vector();
+            Scale = new Vector(1.0f);
+        }
+
+        public void SetTranslation(Vector translation)
+        {
+            Translation = translation;
+        }
+
+        public void SetRotation(Vector rotation)
+        {
+            Rotation = rotation;
+        }
+
+        public void SetScale(Vector scale)
+        {
+            Scale = scale;
+        }
+
+        public Vector GetTranslation() { return Translation; }
+        public Vector GetRotation() { return Rotation; }
+        public Vector GetScale() { return Scale; }
+
+        public Matrix4 GetTransform()
+        {
+            Vector3 rot = new Vector3(Rotation.X, Rotation.Y, Rotation.Z);
+            Vector3 translation = new Vector3(Translation.X, Translation.Y, Translation.Z);
+            Vector3 scale = new Vector3(Scale.X, Scale.Y, Scale.Z);
+
+            return Matrix4.CreateTranslation(translation) * Matrix4.CreateRotationX(MathHelper.DegreesToRadians(rot.X))
+                   * Matrix4.CreateRotationY(MathHelper.DegreesToRadians(rot.Y)) * Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(rot.Z))
+                   * Matrix4.CreateScale(scale);
+        }
+    }
+
     public interface ITriangle
     {
+        public Vector FirstPosition { get; set; }
+        public Vector m_Position { get; set; }
+        public Vector m_Rotation {  get; set; }
+        public Vector m_Scale { get; set; }
         void Draw(Matrix4 ViewProjection, Vector3 Position = default, float xRot = 0.0f, float yRot = 0.0f, float zRot = 0.0f);
         void Load();
         void Unbind();
+        public void SetTranslation(Vector Translation);
+        public void SetRotation(Vector Rotation);
+        public void SetScale(Vector Scale);
     }
     public class Triangle : ITriangle
     {
@@ -95,9 +165,21 @@ namespace Hello_OpenTK.Componentes
         private int VAO, VBO;
         [JsonPropertyName("Posicion")]
         public Vector m_Position { get; set; }
+        [JsonPropertyName("Rotation")]
+        public Vector m_Rotation { get; set; }
+        [JsonPropertyName("Scale")]
+        public Vector m_Scale { get; set; }
+        private Matrix4 Rotation, Position, Scale;
+        [JsonPropertyName("InitialPosition")]
+        public Vector FirstPosition { get; set; }
 
         public Triangle()
         {
+            this.m_Position = new Vector();
+            this.m_Rotation = new Vector();
+            this.m_Scale = new Vector(1.0f);
+            this.Position = this.Rotation = Matrix4.Identity;
+            Scale = Matrix4.Identity;
             m_Vertices = new List<VertexP>();
             m_Position = new Vector(0.0f, 0.0f, 0.0f);
             shader = new Shader("../../../shader.vert", "../../../FlatColor.frag");
@@ -105,7 +187,11 @@ namespace Hello_OpenTK.Componentes
 
         public Triangle(List<Vector> vertices, Vector Color, Vector Position = default, float xRot = 0, float yRot = 0, float zRot = 0, Vector Scale = default)
         {
-            this.m_Position = Position;
+            this.m_Position = FirstPosition = Position;
+            this.m_Rotation = new Vector();
+            this.m_Scale = new Vector(1.0f);
+            this.Position = this.Rotation = Matrix4.Identity;
+            this.Scale = Matrix4.Identity;
 
             if (Scale == default)
             {
@@ -135,12 +221,34 @@ namespace Hello_OpenTK.Componentes
             };
 
             shader = new Shader("../../../shader.vert", "../../../FlatColor.frag");
+        }
 
-            Load();
+        public void SetTranslation(Vector Translation)
+        {
+            Position = Matrix4.CreateTranslation(Translation.X, Translation.Y, Translation.Z);
+            m_Position = Translation;
+        }
+
+        public void SetRotation(Vector Rotation)
+        {
+            this.Rotation = Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(Rotation.Z))
+                   * Matrix4.CreateRotationY(MathHelper.DegreesToRadians(Rotation.Y)) * Matrix4.CreateRotationX(MathHelper.DegreesToRadians(Rotation.X));
+            m_Rotation = Rotation;
+        }
+
+        public void SetScale(Vector Scale)
+        {
+            this.Scale = Matrix4.CreateScale(Scale.X, Scale.Y, Scale.Z);
+            m_Scale = Scale;
         }
 
         public void Load()
         {
+            this.Position = Matrix4.CreateTranslation(m_Position.X, m_Position.Y, m_Position.Z);
+            this.Scale = Matrix4.CreateScale(1.0f);
+            this.Rotation = Matrix4.CreateRotationX(MathHelper.DegreesToRadians(0.0f))
+                   * Matrix4.CreateRotationY(MathHelper.DegreesToRadians(0.0f)) * Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(0.0f));
+
             VAO = GL.GenVertexArray();
             VBO = GL.GenBuffer();
 
@@ -166,7 +274,8 @@ namespace Hello_OpenTK.Componentes
                         * Matrix4.CreateRotationY(MathHelper.DegreesToRadians(yRot))
                         * Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(zRot)) *
                         Matrix4.CreateTranslation(Position) * ViewProjection;
-            shader.SetMatrix4("viewprojection", matrix4);
+            Matrix4 matrix = Rotation * Scale * this.Position * ViewProjection;
+            shader.SetMatrix4("viewprojection", matrix);
             GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
         }
 
