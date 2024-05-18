@@ -1,38 +1,55 @@
 ﻿using Hello_OpenTK.Componentes;
 using OpenTK.Mathematics;
+using Hello_OpenTK.Math;
+using Newtonsoft.Json.Serialization;
 
 namespace Hello_OpenTK.Renderer
 {
-    public struct Action
+    public class Actions
     {
-        static ITriangle Objeto { get; set; }
+        private float TimeDiference;
+        private float elapsedTime;
+        private float initime;
+        private Vector currentPosition;
+        private Vector speedRotation;
+        public float Endtime;
 
-        public Action(ITriangle objeto)
+        public List<Polinomio> Polinomio { get; set; }
+
+        public Actions(List<Polinomio> pol, float time_0 = 0.0f, float endtime = 0.0f, float timediference = 0.0f) 
         {
-            Objeto = objeto;
+            Polinomio = pol;
+            elapsedTime = 0.0f;
+            initime = time_0;
+            Endtime = endtime;
+            TimeDiference = timediference;
+            speedRotation = new Vector(0, 0, 0);
         }
 
-        public void Move(Vector PosFin)
+        public void GetSpeedRotation(Vector speed)
         {
-            Objeto.SetTranslation(PosFin);
-        }
-        public void Rotate(Vector RotFin)
-        {
-            Objeto.SetRotation(RotFin);
-        }
-        public void Scale(Vector ScaEnd)
-        {
-            Objeto.SetScale(ScaEnd);
+            speedRotation = speed;
         }
 
-        static void Action1(Vector PosFin, Vector Dif, double time)
+        public void Update(float deltaTime, ITriangle Objeto)
         {
-            if (PosFin != Dif)
+            elapsedTime += deltaTime;
+            if (elapsedTime >= initime && elapsedTime <= Endtime)
             {
-                Objeto.SetTranslation(PosFin - Dif);
+                currentPosition.X = Polinomio[0].GetPol(elapsedTime - TimeDiference) + Objeto.FirstPosition.X;
+                currentPosition.Y = Polinomio[1].GetPol(elapsedTime - TimeDiference) + Objeto.FirstPosition.Y;
+                currentPosition.Z = Polinomio[2].GetPol(elapsedTime - TimeDiference) + Objeto.FirstPosition.Z;
+                Objeto.SetTranslation(currentPosition);
+                Objeto.SetRotation(speedRotation * (elapsedTime - TimeDiference));
             }
-            
         }
+
+        public void Reset()
+        {
+            elapsedTime = 0.0f;
+        }
+
+
     }
 }
 

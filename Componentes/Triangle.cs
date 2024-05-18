@@ -1,84 +1,12 @@
 ﻿using OpenTK.Mathematics;
 using OpenTK.Graphics.OpenGL4;
 using Hello_OpenTK.Renderer;
+using Hello_OpenTK.Math;
 
 using System.Text.Json.Serialization;
 
 namespace Hello_OpenTK.Componentes
 {
-    public struct Vector
-    {
-        public float X { get; set; }
-        public float Y { get; set; }
-        public float Z { get; set; }
-
-        public Vector(float x, float y, float z)
-        {
-            X = x;
-            Y = y;
-            Z = z;
-        }
-
-        public Vector(float x)
-        {
-            X = x;
-            Y = x;
-            Z = x;
-        }
-
-        public static Vector operator *(Vector vec, Vector scale)
-        {
-            vec.X *= scale.X;
-            vec.Y *= scale.Y;
-            vec.Z *= scale.Z;
-            return vec;
-        }
-
-        public static Vector operator +(Vector vec, Vector scale)
-        {
-            vec.X += scale.X;
-            vec.Y += scale.Y;
-            vec.Z += scale.Z;
-            return vec;
-        }
-
-        public static Vector operator -(Vector vec, Vector scale)
-        {
-            vec.X -= scale.X;
-            vec.Y -= scale.Y;
-            vec.Z -= scale.Z;
-            return vec;
-        }
-
-        public static Vector operator /(Vector vec, float div)
-        {
-            vec.X /= div;
-            vec.Y /= div;
-            vec.Z /= div;
-            return vec;
-        }
-
-        public bool Equals(Vector other)
-        {
-            if (X == other.X && Y == other.Y)
-            {
-                return Z == other.Z;
-            }
-
-            return false;
-        }
-
-        public static bool operator ==(Vector left, Vector right)
-        {
-            return left.Equals(right);
-        }
-
-        public static bool operator !=(Vector left, Vector right)
-        {
-            return !(left == right);
-        }
-
-    }
     public struct VertexP
     {
         [JsonPropertyName("Posicion")]
@@ -153,6 +81,7 @@ namespace Hello_OpenTK.Componentes
         void Draw(Matrix4 ViewProjection, Vector3 Position = default, float xRot = 0.0f, float yRot = 0.0f, float zRot = 0.0f);
         void Load();
         void Unbind();
+        public void ResetAllPositions();
         public void SetTranslation(Vector Translation);
         public void SetRotation(Vector Rotation);
         public void SetScale(Vector Scale);
@@ -277,6 +206,13 @@ namespace Hello_OpenTK.Componentes
             Matrix4 matrix = Rotation * Scale * this.Position * ViewProjection;
             shader.SetMatrix4("viewprojection", matrix);
             GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
+        }
+
+        public void ResetAllPositions()
+        {
+            SetTranslation(FirstPosition);
+            SetRotation(new Vector());
+            SetScale(new Vector(1.0f));
         }
 
         public void Unbind()

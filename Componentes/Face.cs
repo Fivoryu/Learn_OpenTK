@@ -1,6 +1,7 @@
 ﻿using OpenTK.Mathematics;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using Hello_OpenTK.Math;
 
 namespace Hello_OpenTK.Componentes
 {
@@ -80,6 +81,15 @@ namespace Hello_OpenTK.Componentes
             {
                 m_Triangles[kvp.Key].Draw(Rotation * Scale * this.Position * ViewProjection, Position + position, xRot, yRot, zRot);
             }
+        }
+
+        public void ResetAllPositions()
+        {
+            SetTranslation(FirstPosition);
+            SetRotation(new Vector());
+            SetScale(new Vector(1.0f));
+            foreach (KeyValuePair<string, Triangle> kvp in m_Triangles)
+                m_Triangles[kvp.Key].ResetAllPositions();
         }
 
         public void Unbind()

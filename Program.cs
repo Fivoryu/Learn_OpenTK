@@ -70,3 +70,12 @@ namespace Hello_OpenTK
 // Siguiente clase lo mismo que el anterior
 // La accion se termina cuando el tiempo se termina
 // Crear clase ejecutor que ejecuta las animacioens
+
+// Crear avatar personalizado, no estandar
+
+// Crear en Roblox un escenario
+// Tiene que cumplir las siguientes caracteristicas
+// Hacer un juego de carrera de bicicletas, en un escenario campestre
+// Con un lago al medio y alrededor de ese lago un circuito irregular
+// Con subidas, bajadas, arboles, rocas
+// Ver que el escenario este bien, (mirar desde arriba del escenario)

@@ -10,6 +10,7 @@ using OpenTK.Windowing.GraphicsLibraryFramework;
 using Zenseless.OpenTK;
 using Zenseless.OpenTK.GUI;
 using ImGuiNET;
+using Hello_OpenTK.Math;
 
 namespace Hello_OpenTK
 {   
@@ -21,9 +22,12 @@ namespace Hello_OpenTK
         public ImGuILayer imgui;
         public ImGuiFacade GUI;
 
+        public List<Actions> actions = new List<Actions>();
+        public Animation animation;
+
         public Scene scene3;
         
-        private double time = 0;
+        public double time = 0;
 
         private Camera camera;
         private bool firstMove = true;
@@ -106,78 +110,6 @@ namespace Hello_OpenTK
                 firstMove = true;
             }
 
-            if (input.IsKeyDown(Keys.LeftControl) && input.IsKeyDown(Keys.G) && input.IsKeyDown(Keys.T))
-            {
-                float x, y, z;
-
-                Console.WriteLine("X: ");
-                float.TryParse(Console.ReadLine(), out x);
-                Console.WriteLine("Y: ");
-                float.TryParse(Console.ReadLine(), out y);
-                Console.WriteLine("Z: ");
-                float.TryParse(Console.ReadLine(), out z);
-
-                Vector vector = new Vector(x, y, z);
-                Objeto objeto = Carga.CargarTV(vector);
-
-                Console.WriteLine("Ingrese el nombre del archivo:");
-                string fileName = file + Console.ReadLine() + ".json";
-
-                ObjectSerializer.Serialize<Objeto>(objeto, fileName);
-            }
-
-            if (input.IsKeyDown(Keys.LeftControl) && input.IsKeyDown(Keys.G) && input.IsKeyDown(Keys.F))
-            {
-                float x, y, z;
-
-                Console.WriteLine("X: ");
-                float.TryParse(Console.ReadLine(), out x);
-                Console.WriteLine("Y: ");
-                float.TryParse(Console.ReadLine(), out y);
-                Console.WriteLine("Z: ");
-                float.TryParse(Console.ReadLine(), out z);
-
-                Vector vector = new Vector(x, y, z);
-                Objeto objeto = Carga.CargarFlorero(vector);
-
-                Console.WriteLine("Ingrese el nombre del archivo:");
-                string fileName = file + Console.ReadLine() + ".json";
-
-                ObjectSerializer.Serialize<Objeto>(objeto, fileName);
-            }
-
-            if (input.IsKeyDown(Keys.LeftControl) && input.IsKeyDown(Keys.G) && input.IsKeyDown(Keys.P))
-            {
-                float x, y, z;
-
-                Console.WriteLine("X: ");
-                float.TryParse(Console.ReadLine(), out x);
-                Console.WriteLine("Y: ");
-                float.TryParse(Console.ReadLine(), out y);
-                Console.WriteLine("Z: ");
-                float.TryParse(Console.ReadLine(), out z);
-
-                Vector vector = new Vector(x, y, z);
-                Objeto objeto = Carga.CargarParlante(vector);
-
-                Console.WriteLine("Ingrese el nombre del archivo:");
-                string fileName = file + Console.ReadLine() + ".json";
-
-                ObjectSerializer.Serialize<Objeto>(objeto, fileName);
-            }
-
-            if (input.IsKeyDown(Keys.LeftControl) && input.IsKeyDown(Keys.O))
-            {
-
-                Console.WriteLine("Ingrese el nombre del archivo:");
-                string fileName = file + Console.ReadLine() + ".json";
-                Console.WriteLine("Ingrese el nombre del objeto:");
-                string name = Console.ReadLine();
-
-                scene3.m_Objeto[name] = ObjectSerializer.Deserialize<Objeto>(fileName);
-
-            }
-
         }
 
         protected override void OnMouseWheel(MouseWheelEventArgs e)
@@ -194,8 +126,6 @@ namespace Hello_OpenTK
             scene3 = new Scene();
 
             //scene3 = ObjectSerializer.Deserialize<Scene>(file + "Scene1.json");
-
-
             //scene3.Load();
 
             camera = new Camera(new Vector3(0.0f, 0.0f, -2.0f), Size.X / (float)Size.Y);
@@ -204,10 +134,6 @@ namespace Hello_OpenTK
             imgui = new(this);
 
             GUI.LoadFontDroidSans(15);
-
-            //imgui = new ImGuilayer(ref scene3, ref camera);
-
-            //imgui.Update();
 
             // CursorState = CursorState.Grabbed;
         }

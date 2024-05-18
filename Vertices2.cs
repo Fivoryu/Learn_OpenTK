@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenTK.Mathematics;
+﻿using Hello_OpenTK.Math;
 using Hello_OpenTK.Componentes;
 
 namespace Hello_OpenTK
@@ -15,23 +10,23 @@ namespace Hello_OpenTK
             Objeto TV = new Objeto(Position);
             TV.m_Componentes = new Dictionary<string, Components>()
             {
-                ["Soporte1"] = new Components(TV.m_Position + new Vector(0.0f, 0.0f, 0.0f)),
-                ["Soporte2"] = new Components(TV.m_Position),
-                ["DownEdge"] = new Components(TV.m_Position),
-                ["LeftEdge"] = new Components(TV.m_Position),
-                ["UpEdge"] = new Components(TV.m_Position),
-                ["RightEdge"] = new Components(TV.m_Position),
-                ["Screen"] = new Components(TV.m_Position),
-                ["Back"] = new Components(TV.m_Position)
+                ["Soporte1"] = new Components(),
+                ["Soporte2"] = new Components(),
+                ["DownEdge"] = new Components(),
+                ["LeftEdge"] = new Components(),
+                ["UpEdge"] = new Components(),
+                ["RightEdge"] = new Components(),
+                ["Screen"] = new Components(),
+                ["Back"] = new Components()
             };
             TV.m_Componentes["Soporte1"].m_Faces = new Dictionary<string, Face>()
             {
-                ["Back"] = new Face(TV.m_Position + TV.m_Componentes["Soporte1"].m_Position),
-                ["Right"] = new Face(TV.m_Position + TV.m_Componentes["Soporte1"].m_Position),
-                ["Front"] = new Face(TV.m_Position + TV.m_Componentes["Soporte1"].m_Position),
-                ["Left"] = new Face(TV.m_Position + TV.m_Componentes["Soporte1"].m_Position),
-                ["Top"] = new Face(TV.m_Position + TV.m_Componentes["Soporte1"].m_Position),
-                ["Bottom"] = new Face(TV.m_Position + TV.m_Componentes["Soporte1"].m_Position)
+                ["Back"] = new Face(),
+                ["Right"] = new Face(),
+                ["Front"] = new Face(),
+                ["Left"] = new Face(),
+                ["Top"] = new Face(),
+                ["Bottom"] = new Face()
             };
 
 
@@ -40,13 +35,11 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.25f, -0.875f, -0.125f), new Vector(-0.25f,  -0.75f, -0.125f), new Vector( 0.25f,  -0.75f, -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["Soporte1"].m_Position + TV.m_Componentes["Soporte1"].m_Faces["Back"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.25f, -0.875f, -0.125f), new Vector( 0.25f, -0.875f, -0.125f), new Vector( 0.25f,  -0.75f, -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["Soporte1"].m_Position + TV.m_Componentes["Soporte1"].m_Faces["Back"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["Soporte1"].m_Faces["Right"].m_Triangles = new Dictionary<string, Triangle>()
@@ -54,13 +47,11 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector( 0.25f, -0.875f, -0.125f), new Vector( 0.25f,  -0.75f, -0.125f), new Vector( 0.25f, -0.75f,   0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["Soporte1"].m_Position + TV.m_Componentes["Soporte1"].m_Faces["Right"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector( 0.25f, -0.875f, -0.125f), new Vector( 0.25f, -0.875f,  0.125f), new Vector( 0.25f, -0.75f,   0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["Soporte1"].m_Position + TV.m_Componentes["Soporte1"].m_Faces["Right"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["Soporte1"].m_Faces["Front"].m_Triangles = new Dictionary<string, Triangle>()
@@ -68,13 +59,11 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector( 0.25f, -0.875f,  0.125f), new Vector( 0.25f, -0.75f,   0.125f), new Vector(-0.25f, -0.75f,   0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["Soporte1"].m_Position + TV.m_Componentes["Soporte1"].m_Faces["Front"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector( 0.25f, -0.875f,  0.125f), new Vector(-0.25f, -0.875f,  0.125f), new Vector(-0.25f, -0.75f,   0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["Soporte1"].m_Position + TV.m_Componentes["Soporte1"].m_Faces["Front"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["Soporte1"].m_Faces["Left"].m_Triangles = new Dictionary<string, Triangle>()
@@ -82,13 +71,11 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.25f, -0.875f,  0.125f), new Vector(-0.25f, -0.75f,   0.125f), new Vector(-0.25f,  -0.75f, -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["Soporte1"].m_Position + TV.m_Componentes["Soporte1"].m_Faces["Left"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.25f, -0.875f,  0.125f), new Vector(-0.25f, -0.875f, -0.125f), new Vector(-0.25f,  -0.75f, -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["Soporte1"].m_Position + TV.m_Componentes["Soporte1"].m_Faces["Left"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["Soporte1"].m_Faces["Top"].m_Triangles = new Dictionary<string, Triangle>()
@@ -96,13 +83,11 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.25f,  -0.75f, -0.125f), new Vector(-0.25f, -0.75f,   0.125f), new Vector( 0.25f, -0.75f,   0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["Soporte1"].m_Position + TV.m_Componentes["Soporte1"].m_Faces["Top"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.25f,  -0.75f, -0.125f), new Vector( 0.25f,  -0.75f, -0.125f), new Vector( 0.25f, -0.75f,   0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["Soporte1"].m_Position + TV.m_Componentes["Soporte1"].m_Faces["Top"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["Soporte1"].m_Faces["Bottom"].m_Triangles = new Dictionary<string, Triangle>()
@@ -110,21 +95,19 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.25f, -0.875f, -0.125f), new Vector(-0.25f, -0.875f,  0.125f), new Vector( 0.25f, -0.875f,  0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["Soporte1"].m_Position + TV.m_Componentes["Soporte1"].m_Faces["Bottom"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.25f, -0.875f, -0.125f), new Vector( 0.25f, -0.875f, -0.125f), new Vector( 0.25f, -0.875f,  0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["Soporte1"].m_Position + TV.m_Componentes["Soporte1"].m_Faces["Bottom"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["Soporte2"].m_Faces = new Dictionary<string, Face>()
             {
-                ["Back"] = new Face(TV.m_Position + TV.m_Componentes["Soporte2"].m_Position),
-                ["Right"] = new Face(TV.m_Position + TV.m_Componentes["Soporte2"].m_Position),
-                ["Front"] = new Face(TV.m_Position + TV.m_Componentes["Soporte2"].m_Position),
-                ["Left"] = new Face(TV.m_Position + TV.m_Componentes["Soporte2"].m_Position),
+                ["Back"] = new Face(),
+                ["Right"] = new Face(),
+                ["Front"] = new Face(),
+                ["Left"] = new Face(),
             };
 
             TV.m_Componentes["Soporte2"].m_Faces["Back"].m_Triangles = new Dictionary<string, Triangle>()
@@ -132,13 +115,11 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.0625f, -0.75f,   -0.125f), new Vector(-0.0625f, -0.5625f, -0.125f), new Vector( 0.0625f, -0.5625f, -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-               TV.m_Position + TV.m_Componentes["Soporte2"].m_Position + TV.m_Componentes["Soporte2"].m_Faces["Back"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.0625f, -0.75f,   -0.125f), new Vector( 0.0625f, -0.75f,   -0.125f), new Vector( 0.0625f, -0.5625f, -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                   TV.m_Position + TV.m_Componentes["Soporte2"].m_Position + TV.m_Componentes["Soporte2"].m_Faces["Back"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["Soporte2"].m_Faces["Right"].m_Triangles = new Dictionary<string, Triangle>()
@@ -146,13 +127,11 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector( 0.0625f, -0.75f,   -0.125f), new Vector( 0.0625f, -0.5625f, -0.125f), new Vector(0.0625f, -0.5625f,  0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["Soporte2"].m_Position + TV.m_Componentes["Soporte2"].m_Faces["Right"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector( 0.0625f, -0.75f,   -0.125f), new Vector(0.0625f, -0.75f,    0.125f), new Vector(0.0625f, -0.5625f,  0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["Soporte2"].m_Position + TV.m_Componentes["Soporte2"].m_Faces["Right"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["Soporte2"].m_Faces["Front"].m_Triangles = new Dictionary<string, Triangle>()
@@ -160,13 +139,11 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector(0.0625f, -0.75f,    0.125f), new Vector(0.0625f, -0.5625f,  0.125f), new Vector(-0.0625f, -0.5625f,  0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["Soporte2"].m_Position + TV.m_Componentes["Soporte2"].m_Faces["Front"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector(0.0625f, -0.75f,    0.125f), new Vector(-0.0625f, -0.75f,    0.125f), new Vector(-0.0625f, -0.5625f,  0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["Soporte2"].m_Position + TV.m_Componentes["Soporte2"].m_Faces["Front"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["Soporte2"].m_Faces["Left"].m_Triangles = new Dictionary<string, Triangle>()
@@ -174,22 +151,20 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.0625f, -0.75f,    0.125f), new Vector(-0.0625f, -0.5625f,  0.125f), new Vector(-0.0625f, -0.5625f, -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["Soporte2"].m_Position + TV.m_Componentes["Soporte2"].m_Faces["Left"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.0625f, -0.75f,    0.125f), new Vector(-0.0625f, -0.75f,   -0.125f), new Vector(-0.0625f, -0.5625f, -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["Soporte2"].m_Position + TV.m_Componentes["Soporte2"].m_Faces["Left"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["DownEdge"].m_Faces = new Dictionary<string, Face>()
             {
-                ["Back"] = new Face(TV.m_Position + TV.m_Componentes["DownEdge"].m_Position),
-                ["Right"] = new Face(TV.m_Position + TV.m_Componentes["DownEdge"].m_Position),
-                ["Front"] = new Face(TV.m_Position + TV.m_Componentes["DownEdge"].m_Position),
-                ["Left"] = new Face(TV.m_Position + TV.m_Componentes["DownEdge"].m_Position),
-                ["Bottom"] = new Face(TV.m_Position + TV.m_Componentes["DownEdge"].m_Position)
+                ["Back"] = new Face(),
+                ["Right"] = new Face(),
+                ["Front"] = new Face(),
+                ["Left"] = new Face(),
+                ["Bottom"] = new Face()
             };
 
             TV.m_Componentes["DownEdge"].m_Faces["Back"].m_Triangles = new Dictionary<string, Triangle>()
@@ -197,13 +172,11 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f, -1.0625f + 0.5f,    -0.125f), new Vector(-0.5625f, -1.0625f + 0.5625f, -0.125f), new Vector( 0.5625f, -1.0625f + 0.5625f, -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["DownEdge"].m_Position + TV.m_Componentes["DownEdge"].m_Faces["Back"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f, -1.0625f + 0.5f,    -0.125f), new Vector( 0.5625f, -1.0625f + 0.5f,    -0.125f), new Vector( 0.5625f, -1.0625f + 0.5625f, -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["DownEdge"].m_Position + TV.m_Componentes["DownEdge"].m_Faces["Back"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["DownEdge"].m_Faces["Right"].m_Triangles = new Dictionary<string, Triangle>()
@@ -211,13 +184,11 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector( 0.5625f, -1.0625f + 0.5f,    -0.125f), new Vector( 0.5625f, -1.0625f + 0.5625f, -0.125f), new Vector(0.5625f, -1.0625f + 0.5625f,  0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["DownEdge"].m_Position + TV.m_Componentes["DownEdge"].m_Faces["Right"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector( 0.5625f, -1.0625f + 0.5f,    -0.125f), new Vector(0.5625f, -1.0625f + 0.5f,     0.125f), new Vector(0.5625f, -1.0625f + 0.5625f,  0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["DownEdge"].m_Position + TV.m_Componentes["DownEdge"].m_Faces["Right"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["DownEdge"].m_Faces["Front"].m_Triangles = new Dictionary<string, Triangle>()
@@ -225,13 +196,11 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector(0.5625f, -1.0625f + 0.5f,     0.125f), new Vector(0.5625f, -1.0625f + 0.5625f,  0.125f), new Vector(-0.5625f, -1.0625f + 0.5625f,  0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["DownEdge"].m_Position + TV.m_Componentes["DownEdge"].m_Faces["Front"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector(0.5625f, -1.0625f + 0.5f,     0.125f), new Vector(-0.5625f, -1.0625f + 0.5f,     0.125f), new Vector(-0.5625f, -1.0625f + 0.5625f,  0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["DownEdge"].m_Position + TV.m_Componentes["DownEdge"].m_Faces["Front"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["DownEdge"].m_Faces["Left"].m_Triangles = new Dictionary<string, Triangle>()
@@ -239,13 +208,11 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f, -1.0625f + 0.5f,     0.125f), new Vector(-0.5625f, -1.0625f + 0.5625f,  0.125f), new Vector(-0.5625f, -1.0625f + 0.5625f, -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["DownEdge"].m_Position + TV.m_Componentes["DownEdge"].m_Faces["Left"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f, -1.0625f + 0.5f,     0.125f), new Vector(-0.5625f, -1.0625f + 0.5f,    -0.125f), new Vector(-0.5625f, -1.0625f + 0.5625f, -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["DownEdge"].m_Position + TV.m_Componentes["DownEdge"].m_Faces["Left"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["DownEdge"].m_Faces["Bottom"].m_Triangles = new Dictionary<string, Triangle>()
@@ -253,20 +220,18 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector( 0.5625f, -1.0625f + 0.5f,    -0.125f), new Vector(-0.5625f, -1.0625f + 0.5f,    -0.125f), new Vector(-0.5625f, -1.0625f + 0.5f,     0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["DownEdge"].m_Position + TV.m_Componentes["DownEdge"].m_Faces["Bottom"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector( 0.5625f, -1.0625f + 0.5f,    -0.125f), new Vector(0.5625f, -1.0625f + 0.5f,     0.125f), new Vector(-0.5625f, -1.0625f + 0.5f,     0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["DownEdge"].m_Position + TV.m_Componentes["DownEdge"].m_Faces["Bottom"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["LeftEdge"].m_Faces = new Dictionary<string, Face>()
             {
-                ["Back"] = new Face(TV.m_Position + TV.m_Componentes["LeftEdge"].m_Position),
-                ["Left"] = new Face(TV.m_Position + TV.m_Componentes["LeftEdge"].m_Position),
-                ["Front"] = new Face(TV.m_Position + TV.m_Componentes["LeftEdge"].m_Position),
+                ["Back"] = new Face(),
+                ["Left"] = new Face(),
+                ["Front"] = new Face(),
             };
 
             TV.m_Componentes["LeftEdge"].m_Faces["Back"].m_Triangles = new Dictionary<string, Triangle>()
@@ -274,13 +239,11 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f, -0.5f, -0.125f), new Vector(-0.5625f,  0.5f,  -0.125f), new Vector(-0.5f,     0.5f, -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["LeftEdge"].m_Position + TV.m_Componentes["LeftEdge"].m_Faces["Back"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f, -0.5f, -0.125f), new Vector(-0.5f,    -0.5f, -0.125f), new Vector(-0.5f,     0.5f, -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["LeftEdge"].m_Position + TV.m_Componentes["LeftEdge"].m_Faces["Back"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["LeftEdge"].m_Faces["Left"].m_Triangles = new Dictionary<string, Triangle>()
@@ -288,13 +251,11 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f, -0.5f, 0.125f), new Vector(-0.5625f,  0.5f, 0.125f), new Vector(-0.5625f,  0.5f,  -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["LeftEdge"].m_Position + TV.m_Componentes["LeftEdge"].m_Faces["Left"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f, -0.5f, 0.125f), new Vector(-0.5625f, -0.5f, -0.125f), new Vector(-0.5625f,  0.5f,  -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["LeftEdge"].m_Position + TV.m_Componentes["LeftEdge"].m_Faces["Left"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["LeftEdge"].m_Faces["Front"].m_Triangles = new Dictionary<string, Triangle>()
@@ -302,22 +263,20 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f, -0.5f, 0.125f), new Vector(-0.5625f,  0.5f, 0.125f), new Vector(-0.5f,     0.5f, 0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["LeftEdge"].m_Position + TV.m_Componentes["LeftEdge"].m_Faces["Front"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f, -0.5f, 0.125f), new Vector(-0.5f,    -0.5f, 0.125f), new Vector(-0.5f,     0.5f, 0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["LeftEdge"].m_Position + TV.m_Componentes["LeftEdge"].m_Faces["Front"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["UpEdge"].m_Faces = new Dictionary<string, Face>()
             {
-                ["Back"] = new Face(TV.m_Position + TV.m_Componentes["UpEdge"].m_Position),
-                ["Left"] = new Face(TV.m_Position + TV.m_Componentes["UpEdge"].m_Position),
-                ["Front"] = new Face(TV.m_Position + TV.m_Componentes["UpEdge"].m_Position),
-                ["Right"] = new Face(TV.m_Position + TV.m_Componentes["UpEdge"].m_Position),
-                ["Top"] = new Face(TV.m_Position + TV.m_Componentes["UpEdge"].m_Position),
+                ["Back"] = new Face(),
+                ["Left"] = new Face(),
+                ["Front"] = new Face(),
+                ["Right"] = new Face(),
+                ["Top"] = new Face(),
             };
 
             TV.m_Componentes["UpEdge"].m_Faces["Back"].m_Triangles = new Dictionary<string, Triangle>()
@@ -325,13 +284,11 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f, 0.5f,    -0.125f), new Vector(-0.5625f, 0.5625f, -0.125f), new Vector( 0.5625f, 0.5625f, -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["UpEdge"].m_Position + TV.m_Componentes["UpEdge"].m_Faces["Back"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f, 0.5f,    -0.125f), new Vector( 0.5625f, 0.5f,    -0.125f), new Vector( 0.5625f, 0.5625f, -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["UpEdge"].m_Position + TV.m_Componentes["UpEdge"].m_Faces["Back"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["UpEdge"].m_Faces["Left"].m_Triangles = new Dictionary<string, Triangle>()
@@ -339,13 +296,11 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f, 0.5f,    0.125f), new Vector(-0.5625f, 0.5625f,  0.125f), new Vector(-0.5625f, 0.5625f, -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["UpEdge"].m_Position + TV.m_Componentes["UpEdge"].m_Faces["Left"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f, 0.5f,    0.125f), new Vector(-0.5625f, 0.5f,    -0.125f), new Vector(-0.5625f, 0.5625f, -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["UpEdge"].m_Position + TV.m_Componentes["UpEdge"].m_Faces["Left"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["UpEdge"].m_Faces["Front"].m_Triangles = new Dictionary<string, Triangle>()
@@ -353,13 +308,11 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f, 0.5f,    0.125f), new Vector(-0.5625f, 0.5625f,  0.125f), new Vector(0.5625f,  0.5625f,  0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["UpEdge"].m_Position + TV.m_Componentes["UpEdge"].m_Faces["Front"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f, 0.5f,    0.125f), new Vector(0.5625f,  0.5f,    0.125f), new Vector(0.5625f,  0.5625f,  0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["UpEdge"].m_Position + TV.m_Componentes["UpEdge"].m_Faces["Front"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["UpEdge"].m_Faces["Right"].m_Triangles = new Dictionary<string, Triangle>()
@@ -367,13 +320,11 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector( 0.5625f, 0.5f,    -0.125f), new Vector( 0.5625f, 0.5625f, -0.125f), new Vector(0.5625f,  0.5625f,  0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["UpEdge"].m_Position + TV.m_Componentes["UpEdge"].m_Faces["Right"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector( 0.5625f, 0.5f,    -0.125f), new Vector(0.5625f,  0.5f,    0.125f), new Vector(0.5625f,  0.5625f,  0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["UpEdge"].m_Position + TV.m_Componentes["UpEdge"].m_Faces["Right"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["UpEdge"].m_Faces["Top"].m_Triangles = new Dictionary<string, Triangle>()
@@ -381,20 +332,18 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f, 0.5625f, -0.125f), new Vector(-0.5625f, 0.5625f,  0.125f), new Vector(0.5625f,  0.5625f,  0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["UpEdge"].m_Position + TV.m_Componentes["UpEdge"].m_Faces["Top"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f, 0.5625f, -0.125f), new Vector( 0.5625f, 0.5625f, -0.125f), new Vector(0.5625f,  0.5625f,  0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["UpEdge"].m_Position + TV.m_Componentes["UpEdge"].m_Faces["Top"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["RightEdge"].m_Faces = new Dictionary<string, Face>()
             {
-                ["Back"] = new Face(TV.m_Position + TV.m_Componentes["RightEdge"].m_Position),
-                ["Right"] = new Face(TV.m_Position + TV.m_Componentes["RightEdge"].m_Position),
-                ["Front"] = new Face(TV.m_Position + TV.m_Componentes["RightEdge"].m_Position),
+                ["Back"] = new Face(),
+                ["Right"] = new Face(),
+                ["Front"] = new Face(),
             };
 
             TV.m_Componentes["RightEdge"].m_Faces["Back"].m_Triangles = new Dictionary<string, Triangle>()
@@ -402,13 +351,11 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f + 1.0625f, -0.5f, -0.125f), new Vector(-0.5625f + 1.0625f,  0.5f,  -0.125f), new Vector(-0.5f + 1.0625f,     0.5f, -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["RightEdge"].m_Position + TV.m_Componentes["RightEdge"].m_Faces["Back"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f + 1.0625f, -0.5f, -0.125f), new Vector(-0.5f + 1.0625f,    -0.5f, -0.125f), new Vector(-0.5f + 1.0625f,     0.5f, -0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["RightEdge"].m_Position + TV.m_Componentes["RightEdge"].m_Faces["Back"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["RightEdge"].m_Faces["Right"].m_Triangles = new Dictionary<string, Triangle>()
@@ -416,13 +363,11 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5f + 1.0625f,    -0.5f, -0.125f), new Vector(-0.5f + 1.0625f,     0.5f, -0.125f), new Vector(-0.5f + 1.0625f,     0.5f, 0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["RightEdge"].m_Position + TV.m_Componentes["RightEdge"].m_Faces["Right"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5f + 1.0625f,    -0.5f, -0.125f), new Vector(-0.5f + 1.0625f,    -0.5f, 0.125f), new Vector(-0.5f + 1.0625f,     0.5f, 0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["RightEdge"].m_Position + TV.m_Componentes["RightEdge"].m_Faces["Right"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["RightEdge"].m_Faces["Front"].m_Triangles = new Dictionary<string, Triangle>()
@@ -430,111 +375,97 @@ namespace Hello_OpenTK
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f + 1.0625f, -0.5f, 0.125f), new Vector(-0.5625f + 1.0625f,  0.5f, 0.125f), new Vector(-0.5f + 1.0625f,     0.5f, 0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                TV.m_Position + TV.m_Componentes["RightEdge"].m_Position + TV.m_Componentes["RightEdge"].m_Faces["Front"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
                     new Vector(-0.5625f + 1.0625f, -0.5f, 0.125f), new Vector(-0.5f + 1.0625f,    -0.5f, 0.125f), new Vector(-0.5f + 1.0625f,     0.5f, 0.125f)
-                }, new Vector(0.2f, 0.2f, 0.2f),
-                    TV.m_Position + TV.m_Componentes["RightEdge"].m_Position + TV.m_Componentes["RightEdge"].m_Faces["Front"].m_Position),
+                }, new Vector(0.2f, 0.2f, 0.2f)),
             };
 
             TV.m_Componentes["Screen"].m_Faces = new Dictionary<string, Face>()
             {
-                ["Front"] = new Face(TV.m_Position + TV.m_Componentes["Screen"].m_Position),
+                ["Front"] = new Face(),
             };
 
             TV.m_Componentes["Screen"].m_Faces["Front"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.5f, -0.5f, 0.125f), new Vector(-0.5f,  0.5f, 0.125f), new Vector(0.5f,  0.5f, 0.125f)
-                }, new Vector(0.5f, 0.5f, 0.5f),
-                TV.m_Position + TV.m_Componentes["Screen"].m_Position + TV.m_Componentes["Screen"].m_Faces["Front"].m_Position),
+                    new Vector(-0.5f, -0.5f, -0.125f), new Vector(-0.5f,  0.5f, -0.125f), new Vector(0.5f,  0.5f, -0.125f)
+                }, new Vector(0.5f, 0.5f, 0.5f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.5f, -0.5f, 0.125f), new Vector(0.5f, -0.5f, 0.125f), new Vector(0.5f,  0.5f, 0.125f)
-                }, new Vector(0.5f, 0.5f, 0.5f),
-                    TV.m_Position + TV.m_Componentes["Screen"].m_Position + TV.m_Componentes["Screen"].m_Faces["Front"].m_Position),
+                    new Vector(-0.5f, -0.5f, -0.125f), new Vector(0.5f, -0.5f, -0.125f), new Vector(0.5f,  0.5f, -0.125f)
+                }, new Vector(0.5f, 0.5f, 0.5f)),
             };
 
             TV.m_Componentes["Back"].m_Faces = new Dictionary<string, Face>()
             {
-                ["Back"] = new Face(TV.m_Position + TV.m_Componentes["Back"].m_Position),
-                ["Left"] = new Face(TV.m_Position + TV.m_Componentes["Back"].m_Position),
-                ["Right"] = new Face(TV.m_Position + TV.m_Componentes["Back"].m_Position),
-                ["Top"] = new Face(TV.m_Position + TV.m_Componentes["Back"].m_Position),
-                ["Bottom"] = new Face(TV.m_Position + TV.m_Componentes["Back"].m_Position),
+                ["Back"] = new Face(),
+                ["Left"] = new Face(),
+                ["Right"] = new Face(),
+                ["Top"] = new Face(),
+                ["Bottom"] = new Face(),
             };
 
             TV.m_Componentes["Back"].m_Faces["Back"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.5f, -0.5f,  -0.25f), new Vector(-0.5f,  0.5f, -0.25f), new Vector(0.5f,  0.5f,  -0.25f)
-                }, new Vector(0.18f, 0.18f, 0.18f),
-                TV.m_Position + TV.m_Componentes["Back"].m_Position + TV.m_Componentes["Back"].m_Faces["Back"].m_Position),
+                    new Vector(-0.5f, -0.5f,  0.25f), new Vector(-0.5f,  0.5f, 0.25f), new Vector(0.5f,  0.5f,  0.25f)
+                }, new Vector(0.18f, 0.18f, 0.18f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.5f, -0.5f,  -0.25f), new Vector(0.5f, -0.5f,  -0.25f), new Vector(0.5f,  0.5f,  -0.25f)
-                }, new Vector(0.18f, 0.18f, 0.18f),
-                    TV.m_Position + TV.m_Componentes["Back"].m_Position + TV.m_Componentes["Back"].m_Faces["Back"].m_Position),
+                    new Vector(-0.5f, -0.5f,  0.25f), new Vector(0.5f, -0.5f,  0.25f), new Vector(0.5f,  0.5f,  0.25f)
+                }, new Vector(0.18f, 0.18f, 0.18f)),
             };
 
             TV.m_Componentes["Back"].m_Faces["Left"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.5f, -0.5f, -0.25f), new Vector(-0.5f,  0.5f,  -0.25f), new Vector(-0.5f,  0.5f, -0.25f + 0.125f)
-                }, new Vector(0.18f, 0.18f, 0.18f),
-                TV.m_Position + TV.m_Componentes["Back"].m_Position + TV.m_Componentes["Back"].m_Faces["Left"].m_Position),
+                    new Vector(-0.5f, -0.5f, 0.25f), new Vector(-0.5f,  0.5f,  0.25f), new Vector(-0.5f,  0.5f, 0.25f - 0.125f)
+                }, new Vector(0.18f, 0.18f, 0.18f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.5f, -0.5f,  -0.25f), new Vector(-0.5f, -0.5f, -0.25f + 0.125f), new Vector(-0.5f,  0.5f, -0.25f + 0.125f)
-                }, new Vector(0.18f, 0.18f, 0.18f),
-                    TV.m_Position + TV.m_Componentes["Back"].m_Position + TV.m_Componentes["Back"].m_Faces["Left"].m_Position),
+                    new Vector(-0.5f, -0.5f,  0.25f), new Vector(-0.5f, -0.5f, 0.25f - 0.125f), new Vector(-0.5f,  0.5f, 0.25f - 0.125f)
+                }, new Vector(0.18f, 0.18f, 0.18f)),
             };
 
             TV.m_Componentes["Back"].m_Faces["Right"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(0.5f, -0.5f, -0.25f + 0.125f), new Vector(0.5f,  0.5f, -0.25f + 0.125f), new Vector(0.5f,  0.5f,  -0.25f)
-                }, new Vector(0.18f, 0.18f, 0.18f),
-                TV.m_Position + TV.m_Componentes["Back"].m_Position + TV.m_Componentes["Back"].m_Faces["Right"].m_Position),
+                    new Vector(0.5f, -0.5f, 0.25f - 0.125f), new Vector(0.5f,  0.5f, 0.25f - 0.125f), new Vector(0.5f,  0.5f,  0.25f)
+                }, new Vector(0.18f, 0.18f, 0.18f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(0.5f, -0.5f, -0.25f + 0.125f), new Vector(0.5f, -0.5f,  -0.25f), new Vector(0.5f,  0.5f, -0.25f)
-                }, new Vector(0.18f, 0.18f, 0.18f),
-                    TV.m_Position + TV.m_Componentes["Back"].m_Position + TV.m_Componentes["Back"].m_Faces["Right"].m_Position),
+                    new Vector(0.5f, -0.5f, 0.25f - 0.125f), new Vector(0.5f, -0.5f,  0.25f), new Vector(0.5f,  0.5f, 0.25f)
+                }, new Vector(0.18f, 0.18f, 0.18f)),
             };
 
             TV.m_Componentes["Back"].m_Faces["Top"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.5f,  0.5f, -0.25f + 0.125f), new Vector(-0.5f,  0.5f, -0.25f), new Vector(0.5f,  0.5f,  -0.25f)
-                }, new Vector(0.18f, 0.18f, 0.18f),
-                TV.m_Position + TV.m_Componentes["Back"].m_Position + TV.m_Componentes["Back"].m_Faces["Top"].m_Position),
+                    new Vector(-0.5f,  0.5f, 0.25f - 0.125f), new Vector(-0.5f,  0.5f, 0.25f), new Vector(0.5f,  0.5f,  0.25f)
+                }, new Vector(0.18f, 0.18f, 0.18f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.5f,  0.5f, -0.25f + 0.125f), new Vector(0.5f,  0.5f, -0.25f + 0.125f), new Vector(0.5f,  0.5f,  -0.25f)
-                }, new Vector(0.18f, 0.18f, 0.18f),
-                    TV.m_Position + TV.m_Componentes["Back"].m_Position + TV.m_Componentes["Back"].m_Faces["Top"].m_Position),
+                    new Vector(-0.5f,  0.5f, 0.25f - 0.125f), new Vector(0.5f,  0.5f, 0.25f - 0.125f), new Vector(0.5f,  0.5f,  0.25f)
+                }, new Vector(0.18f, 0.18f, 0.18f)),
             };
 
             TV.m_Componentes["Back"].m_Faces["Bottom"].m_Triangles = new Dictionary<string, Triangle>()
             {
                 ["Trian1"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.5f, -0.5f, -0.25f + 0.125f), new Vector(-0.5f, -0.5f, -0.25f), new Vector(0.5f, -0.5f, -0.25f)
-                }, new Vector(0.18f, 0.18f, 0.18f),
-                TV.m_Position + TV.m_Componentes["Back"].m_Position + TV.m_Componentes["Back"].m_Faces["Bottom"].m_Position),
+                    new Vector(-0.5f, -0.5f, 0.25f - 0.125f), new Vector(-0.5f, -0.5f, 0.25f), new Vector(0.5f, -0.5f, 0.25f)
+                }, new Vector(0.18f, 0.18f, 0.18f)),
                 ["Trian2"] = new Triangle(new List<Vector>()
                 {
-                    new Vector(-0.5f, -0.5f, -0.25f + 0.125f), new Vector(0.5f, -0.5f, -0.25f + 0.125f), new Vector(0.5f, -0.5f, -0.25f)
-                }, new Vector(0.18f, 0.18f, 0.18f),
-                    TV.m_Position + TV.m_Componentes["Back"].m_Position + TV.m_Componentes["Back"].m_Faces["Bottom"].m_Position),
+                    new Vector(-0.5f, -0.5f, 0.25f - 0.125f), new Vector(0.5f, -0.5f, 0.25f - 0.125f), new Vector(0.5f, -0.5f, 0.25f)
+                }, new Vector(0.18f, 0.18f, 0.18f)),
             };
 
             return TV;
@@ -902,6 +833,100 @@ namespace Hello_OpenTK
             };
 
             return Parlante;
+        }
+
+        public static Objeto CargarPelota()
+        {
+            Objeto Pelota = new Objeto(new Vector(8.0f, 1.5f, 0.0f));
+
+            Pelota.m_Componentes = new Dictionary<string, Components>
+            {
+                ["Pelota"] = new Components()
+            };
+
+            Pelota.m_Componentes["Pelota"].m_Faces = new Dictionary<string, Face>
+            {
+                ["Face1"] = new Face(),
+                ["Face2"] = new Face(),
+                ["Face3"] = new Face(),
+                ["Face4"] = new Face(),
+                ["Face5"] = new Face(),
+                ["Face6"] = new Face()
+            };
+
+            Pelota.m_Componentes["Pelota"].m_Faces["Face1"].m_Triangles = new Dictionary<string, Triangle>
+            {
+                ["Triangle1"] = new Triangle(new List<Vector>()
+                {
+                    new Vector(-0.125f, -0.125f, 0.125f), new Vector(-0.125f, 0.125f, 0.125f), new Vector(0.125f, 0.125f, 0.125f)
+                }, new Vector(1.0f, 0.0f, 0.0f)),
+                ["Triangle2"] = new Triangle(new List<Vector>()
+                {
+                    new Vector(-0.125f, -0.125f, 0.125f), new Vector(0.125f, -0.125f, 0.125f), new Vector(0.125f, 0.125f, 0.125f)
+                }, new Vector(1.0f, 0.0f, 0.0f))
+            };
+
+            Pelota.m_Componentes["Pelota"].m_Faces["Face2"].m_Triangles = new Dictionary<string, Triangle>
+            {
+                ["Triangle1"] = new Triangle(new List<Vector>()
+                {
+                    new Vector(0.125f, -0.125f, 0.125f), new Vector(0.125f, 0.125f, 0.125f), new Vector(0.125f, 0.125f, -0.125f)
+                }, new Vector(1.0f, 0.0f, 0.0f)),
+                ["Triangle2"] = new Triangle(new List<Vector>()
+                {
+                    new Vector(0.125f, -0.125f, 0.125f), new Vector(0.125f, -0.125f, -0.125f), new Vector(0.125f, 0.125f, -0.125f)
+                }, new Vector(1.0f, 0.0f, 0.0f))
+            };
+
+            Pelota.m_Componentes["Pelota"].m_Faces["Face3"].m_Triangles = new Dictionary<string, Triangle>
+            {
+                ["Triangle1"] = new Triangle(new List<Vector>()
+                {
+                    new Vector(0.125f, -0.125f, -0.125f), new Vector(0.125f, 0.125f, -0.125f), new Vector(-0.125f, 0.125f, -0.125f)
+                }, new Vector(1.0f, 0.0f, 0.0f)),
+                ["Triangle2"] = new Triangle(new List<Vector>()
+                {
+                    new Vector(0.125f, -0.125f, -0.125f), new Vector(-0.125f, -0.125f, -0.125f), new Vector(-0.125f, 0.125f, -0.125f)
+                }, new Vector(1.0f, 0.0f, 0.0f))
+            };
+
+            Pelota.m_Componentes["Pelota"].m_Faces["Face4"].m_Triangles = new Dictionary<string, Triangle>
+            {
+                ["Triangle1"] = new Triangle(new List<Vector>()
+                {
+                    new Vector(-0.125f, -0.125f, -0.125f), new Vector(-0.125f, 0.125f, -0.125f), new Vector(-0.125f, 0.125f, 0.125f)
+                }, new Vector(1.0f, 0.0f, 0.0f)),
+                ["Triangle2"] = new Triangle(new List<Vector>()
+                {
+                    new Vector(-0.125f, -0.125f, -0.125f), new Vector(-0.125f, -0.125f, 0.125f), new Vector(-0.125f, 0.125f, 0.125f)
+                }, new Vector(1.0f, 0.0f, 0.0f))
+            };
+
+            Pelota.m_Componentes["Pelota"].m_Faces["Face5"].m_Triangles = new Dictionary<string, Triangle>
+            {
+                ["Triangle1"] = new Triangle(new List<Vector>()
+                {
+                    new Vector(-0.125f, -0.125f, 0.125f), new Vector(-0.125f, -0.125f, -0.125f), new Vector(0.125f, -0.125f, -0.125f)
+                }, new Vector(1.0f, 0.0f, 0.0f)),
+                ["Triangle2"] = new Triangle(new List<Vector>()
+                {
+                    new Vector(-0.125f, -0.125f, 0.125f), new Vector(0.125f, -0.125f, 0.125f), new Vector(0.125f, -0.125f, -0.125f)
+                }, new Vector(1.0f, 0.0f, 0.0f))
+            };
+
+            Pelota.m_Componentes["Pelota"].m_Faces["Face6"].m_Triangles = new Dictionary<string, Triangle>
+            {
+                ["Triangle1"] = new Triangle(new List<Vector>()
+                {
+                    new Vector(-0.125f, 0.125f, 0.125f), new Vector(-0.125f, 0.125f, -0.125f), new Vector(0.125f, 0.125f, -0.125f)
+                }, new Vector(1.0f, 0.0f, 0.0f)),
+                ["Triangle2"] = new Triangle(new List<Vector>()
+                {
+                    new Vector(-0.125f, 0.125f, 0.125f), new Vector(0.125f, 0.125f, 0.125f), new Vector(0.125f, 0.125f, -0.125f)
+                }, new Vector(1.0f, 0.0f, 0.0f))
+            };
+
+            return Pelota;
         }
     }
 
